@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>売れる食品写真の撮影スタジオ｜SIZZLE STUDIO（サービス名は差し替え）</title>
+<meta name="description" content="通販・カタログ・パッケージ・ECで選ばれる食品写真を、企画から撮影・納品までワンストップで。シズル感を操るフード専門の撮影で、ただの記録写真を“売れる写真”に。1カットから・明朗会計・オンライン立会対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF5EE;
+    --paper-2:#F3E9DB;
+    --card:#FFFFFF;
+    --ink:#241B14;
+    --ink-soft:#5C5147;
+    --ink-faint:#8A7E72;
+    --sizzle:#E64E1B;
+    --ember:#A83209;
+    --line:rgba(36,27,20,0.12);
+    --line-strong:rgba(36,27,20,0.22);
+    --shadow:0 18px 40px -24px rgba(36,27,20,0.45);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans JP",sans-serif;
+    font-weight:400;
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* ---------- type helpers ---------- */
+  .eyebrow{
+    font-family:"Anton",sans-serif;
+    letter-spacing:.18em;
+    font-size:.78rem;
+    color:var(--sizzle);
+    text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.6em;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--sizzle);display:inline-block;}
+  .num{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.9;}
+  .ph{ /* placeholder marker */
+    background:rgba(230,78,27,.10);
+    border-bottom:1px dashed var(--sizzle);
+    padding:0 .15em;border-radius:2px;
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-weight:700;font-size:.98rem;
+    padding:.85em 1.5em;border-radius:999px;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--sizzle);color:#fff;box-shadow:0 10px 24px -10px rgba(230,78,27,.7);}
+  .btn-primary:hover{background:var(--ember);transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);}
+  .btn .arw{transition:transform .2s ease;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,245,238,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 24px -20px rgba(36,27,20,.5);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
+  .logo{display:flex;align-items:baseline;gap:.05em;font-family:"Anton",sans-serif;font-size:1.45rem;letter-spacing:.04em;}
+  .logo .dot{color:var(--sizzle);}
+  .logo small{font-family:"Noto Sans JP";font-weight:700;font-size:.62rem;letter-spacing:.2em;color:var(--ink-soft);margin-left:.5em;}
+  .nav-links{display:flex;align-items:center;gap:1.6rem;}
+  .nav-links a.link{font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:color .2s;}
+  .nav-links a.link:hover{color:var(--sizzle);}
+  .nav-tel{font-family:"Anton",sans-serif;font-size:1.15rem;letter-spacing:.02em;}
+  .nav-tel small{display:block;font-family:"Noto Sans JP";font-weight:500;font-size:.6rem;letter-spacing:.12em;color:var(--ink-faint);}
+  .hamb{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;}
+  .hamb span{width:24px;height:2px;background:var(--ink);transition:.25s;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:64px 0 72px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  .hero h1{
+    font-weight:900;font-size:clamp(2.3rem,5vw,3.7rem);line-height:1.18;letter-spacing:.01em;margin:.4em 0 .5em;
+  }
+  .hero h1 .hl{position:relative;white-space:nowrap;color:var(--sizzle);}
+  .hero h1 .hl::after{
+    content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.28em;
+    background:rgba(230,78,27,.22);z-index:-1;transform:scaleX(0);transform-origin:left;
+    animation:draw 1s .5s cubic-bezier(.7,0,.3,1) forwards;
+  }
+  @keyframes draw{to{transform:scaleX(1);}}
+  .hero p.lead{font-size:1.05rem;color:var(--ink-soft);max-width:30em;margin:0 0 1.8em;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:2em;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:.5em;font-size:.84rem;font-weight:700;
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5em 1em;color:var(--ink-soft);
+  }
+  .chip b{color:var(--sizzle);font-family:"Anton";font-weight:400;font-size:1.05rem;}
+
+  /* hero visual: sample frame + sizzle stamp */
+  .hero-visual{position:relative;}
+  .frame{
+    position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2);
+    border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .frame .placeholder-art{position:absolute;inset:0;}
+  .frame .ph-label{
+    position:relative;z-index:2;text-align:center;color:var(--ink-soft);padding:1.4em;
+    font-size:.82rem;font-weight:500;
+  }
+  .frame .ph-label .ic{font-size:1.8rem;display:block;margin-bottom:.4em;opacity:.7;}
+  .stamp{
+    position:absolute;right:-14px;bottom:26px;z-index:3;
+    background:var(--sizzle);color:#fff;border-radius:12px;padding:.85em 1.1em;box-shadow:0 14px 30px -12px rgba(230,78,27,.8);
+    transform:rotate(-4deg);text-align:center;
+  }
+  .stamp .num{font-size:2.1rem;}
+  .stamp small{display:block;font-weight:700;font-size:.62rem;letter-spacing:.14em;margin-top:.2em;}
+
+  /* gradient placeholder art (food-ish warmth, no real image needed) */
+  .art-warm{background:
+    radial-gradient(120% 90% at 20% 15%, #F6C99A 0%, transparent 55%),
+    radial-gradient(120% 100% at 85% 80%, #E8804B 0%, transparent 50%),
+    linear-gradient(150deg,#F0D9B8,#E2A36B);}
+  .art-cool{background:
+    radial-gradient(120% 90% at 25% 20%, #BFE3D2 0%, transparent 55%),
+    linear-gradient(150deg,#D9CBB6,#A9B7A0);
+    filter:grayscale(.35) brightness(.97);}
+
+  /* ---------- section frame ---------- */
+  .section{padding:88px 0;}
+  .section-head{max-width:46em;margin-bottom:48px;}
+  .section-head h2{font-weight:900;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.32;margin:.5em 0 .4em;letter-spacing:.01em;}
+  .section-head p{color:var(--ink-soft);margin:0;font-size:1.02rem;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+  .center .eyebrow{justify-content:center;}
+
+  /* ---------- problems ---------- */
+  .prob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .prob{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .prob:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .prob .pn{font-family:"Anton";color:var(--paper-2);font-size:2.6rem;line-height:1;
+    -webkit-text-stroke:1.5px var(--line-strong);}
+  .prob h3{font-size:1.02rem;font-weight:700;margin:.5em 0 .3em;line-height:1.5;}
+  .prob p{font-size:.86rem;color:var(--ink-soft);margin:0;}
+
+  /* ---------- solution / before-after ---------- */
+  .solve{background:var(--ink);color:var(--paper);}
+  .solve .eyebrow{color:#F6A06E;}
+  .solve .eyebrow::before{background:#F6A06E;}
+  .solve h2{color:#fff;}
+  .solve .section-head p{color:rgba(250,245,238,.72);}
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:8px;}
+  .ba .frame{aspect-ratio:5/4;border-color:rgba(255,255,255,.12);box-shadow:none;}
+  .ba .tag{
+    position:absolute;left:14px;top:14px;z-index:3;font-weight:700;font-size:.74rem;letter-spacing:.08em;
+    padding:.35em .8em;border-radius:999px;
+  }
+  .ba .tag.before{background:rgba(255,255,255,.16);color:#fff;}
+  .ba .tag.after{background:var(--sizzle);color:#fff;}
+  .ba .arrow{font-family:"Anton";color:var(--sizzle);font-size:2rem;text-align:center;}
+  .solve-note{margin-top:28px;color:rgba(250,245,238,.7);font-size:.9rem;text-align:center;}
+
+  /* ---------- strengths ---------- */
+  .str{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .str-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease;}
+  .str-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+  .str-card .top{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:18px;}
+  .str-card .knum{position:absolute;top:14px;left:16px;font-family:"Anton";font-size:1.5rem;color:#fff;
+    background:rgba(36,27,20,.55);width:1.9em;height:1.9em;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+  .str-card .body{padding:24px 24px 30px;}
+  .str-card h3{font-size:1.18rem;font-weight:900;margin:0 0 .5em;line-height:1.5;}
+  .str-card p{font-size:.92rem;color:var(--ink-soft);margin:0;}
+
+  /* ---------- track record band ---------- */
+  .stats{background:var(--paper-2);}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .stat .num{font-size:clamp(2.6rem,6vw,4rem);color:var(--sizzle);}
+  .stat .unit{font-family:"Noto Sans JP";font-weight:700;font-size:1rem;color:var(--ink);margin-left:.15em;}
+  .stat .lbl{font-size:.86rem;color:var(--ink-soft);margin-top:.4em;font-weight:500;}
+  .clients{margin-top:48px;text-align:center;color:var(--ink-soft);font-size:.9rem;line-height:2;}
+  .clients b{color:var(--ink);}
+
+  /* ---------- testimonials ---------- */
+  .voices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .voice{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;}
+  .voice .q{font-family:"Noto Serif JP";font-weight:700;font-size:1.12rem;line-height:1.7;margin:0 0 .7em;}
+  .voice .q em{color:var(--sizzle);font-style:normal;}
+  .voice p{font-size:.88rem;color:var(--ink-soft);margin:0 0 1.4em;flex:1;}
+  .voice .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:16px;}
+  .voice .ava{width:42px;height:42px;border-radius:50%;background:var(--paper-2);flex:none;}
+  .voice .who b{font-size:.86rem;}
+  .voice .who span{font-size:.76rem;color:var(--ink-faint);}
+
+  /* ---------- process ---------- */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+  .step{padding:0 22px;position:relative;}
+  .step:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:6px;color:var(--sizzle);font-family:"Anton";font-size:1.4rem;}
+  .step .sn{font-family:"Anton";font-size:1rem;color:#fff;background:var(--ink);width:2.4em;height:2.4em;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;}
+  .step h3{font-size:1.05rem;font-weight:900;margin:.7em 0 .3em;}
+  .step p{font-size:.86rem;color:var(--ink-soft);margin:0;}
+  .step .badge{display:inline-block;margin-top:.6em;font-size:.7rem;font-weight:700;color:var(--sizzle);background:rgba(230,78,27,.1);padding:.25em .7em;border-radius:999px;}
+
+  /* ---------- pricing ---------- */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;position:relative;}
+  .plan.feat{border:2px solid var(--sizzle);box-shadow:var(--shadow);}
+  .plan.feat .ribbon{position:absolute;top:-13px;left:28px;background:var(--sizzle);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.35em .9em;border-radius:999px;}
+  .plan .pname{font-size:1.02rem;font-weight:900;margin-bottom:.2em;}
+  .plan .psub{font-size:.8rem;color:var(--ink-faint);margin-bottom:1.1em;}
+  .plan .pprice{display:flex;align-items:baseline;gap:.15em;margin-bottom:.2em;}
+  .plan .pprice .yen{font-weight:900;font-size:1.1rem;}
+  .plan .pprice .val{font-family:"Anton";font-size:2.9rem;color:var(--ink);line-height:1;}
+  .plan .pprice .tilde{font-weight:700;color:var(--ink-soft);}
+  .plan .pcut{font-size:.82rem;color:var(--ink-soft);margin-bottom:1.2em;}
+  .plan ul{list-style:none;padding:0;margin:0 0 1.6em;border-top:1px solid var(--line);}
+  .plan li{font-size:.88rem;padding:.7em 0 .7em 1.6em;border-bottom:1px solid var(--line);position:relative;color:var(--ink-soft);}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--sizzle);font-weight:900;}
+  .plan li b{color:var(--ink);font-weight:700;}
+  .plan .btn{margin-top:auto;justify-content:center;}
+  .price-notes{margin-top:30px;font-size:.8rem;color:var(--ink-faint);line-height:1.9;}
+
+  /* ---------- comparison ---------- */
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;}
+  table.cmp{width:100%;border-collapse:collapse;min-width:560px;background:var(--card);}
+  table.cmp th,table.cmp td{padding:16px 18px;text-align:center;font-size:.92rem;border-bottom:1px solid var(--line);}
+  table.cmp thead th{font-weight:700;color:var(--ink-soft);font-size:.84rem;background:var(--paper);}
+  table.cmp thead th.us{background:var(--ink);color:#fff;font-weight:900;}
+  table.cmp tbody th{text-align:left;font-weight:500;color:var(--ink-soft);background:var(--paper);}
+  table.cmp td.us{background:rgba(230,78,27,.06);font-weight:700;}
+  table.cmp tr.total td,table.cmp tr.total th{font-weight:900;font-size:1rem;border-top:2px solid var(--line-strong);}
+  table.cmp tr.total td.us{color:var(--sizzle);font-size:1.15rem;}
+  .cmp-cap{margin-top:14px;font-size:.78rem;color:var(--ink-faint);}
+
+  /* ---------- gallery ---------- */
+  .gal-cat{margin-bottom:40px;}
+  .gal-cat h3{font-size:1.05rem;font-weight:900;display:flex;align-items:center;gap:.6em;margin:0 0 16px;}
+  .gal-cat h3 .tagjp{font-family:"Anton";color:var(--sizzle);font-size:.8rem;letter-spacing:.1em;}
+  .gal-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+  .gtile{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .25s ease;}
+  .gtile:hover{transform:scale(1.04);z-index:2;box-shadow:var(--shadow);}
+  .gtile .glabel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(36,27,20,.5);font-weight:500;}
+
+  /* ---------- access ---------- */
+  .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .access h3{font-size:1.3rem;font-weight:900;margin:0 0 .4em;}
+  .access .map{aspect-ratio:4/3;border-radius:16px;border:1px solid var(--line);background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--ink-faint);font-size:.85rem;}
+  .info-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .info-row .k{font-weight:700;width:6em;flex:none;font-size:.9rem;}
+  .info-row .v{font-size:.92rem;color:var(--ink-soft);}
+
+  /* ---------- final CTA ---------- */
+  .final{background:var(--sizzle);color:#fff;text-align:center;}
+  .final h2{font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.35;margin:0 0 .3em;color:#fff;}
+  .final p{color:rgba(255,255,255,.9);font-size:1.05rem;margin:0 0 2em;}
+  .final-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:center;}
+  .final .btn-white{background:#fff;color:var(--sizzle);}
+  .final .btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 30px -12px rgba(0,0,0,.4);}
+  .final .telbox{font-family:"Anton";font-size:2rem;letter-spacing:.02em;}
+  .final .telbox small{display:block;font-family:"Noto Sans JP";font-weight:500;font-size:.7rem;letter-spacing:.12em;opacity:.85;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(250,245,238,.7);padding:56px 0 32px;}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:40px;}
+  .foot-brand .logo{color:#fff;}
+  .foot-brand p{font-size:.84rem;max-width:24em;margin:.8em 0 0;}
+  .foot-cols{display:flex;gap:56px;flex-wrap:wrap;}
+  .foot-col h4{font-size:.72rem;letter-spacing:.14em;color:var(--ink-faint);font-weight:700;margin:0 0 1em;font-family:"Anton";}
+  .foot-col a{display:block;font-size:.86rem;padding:.3em 0;transition:color .2s;}
+  .foot-col a:hover{color:var(--sizzle);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;font-size:.76rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .hero-visual{max-width:440px;margin:0 auto;}
+    .prob-grid,.str,.stats-grid,.voices,.flow,.price-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-row{grid-template-columns:repeat(4,1fr);}
+    .step:not(:last-child)::after{display:none;}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 18px;}
+    .section{padding:64px 0;}
+    .nav-links{position:fixed;inset:74px 0 auto 0;background:var(--paper);flex-direction:column;align-items:stretch;
+      gap:0;padding:8px 18px 24px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+      transform:translateY(-120%);transition:transform .3s ease;}
+    .nav-links.open{transform:none;}
+    .nav-links a.link{padding:.9em 0;border-bottom:1px solid var(--line);}
+    .nav-links .btn{margin-top:14px;justify-content:center;}
+    .nav-links .nav-tel{padding:.9em 0;}
+    .hamb{display:flex;}
+    .prob-grid,.str,.stats-grid,.voices,.flow,.price-grid,.access-grid,.ba{grid-template-columns:1fr;}
+    .ba{gap:14px;}
+    .ba .arrow{transform:rotate(90deg);}
+    .gal-row{grid-template-columns:repeat(3,1fr);}
+    .hero-cta .btn,.final-cta .btn{flex:1;justify-content:center;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .reveal{opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="SIZZLE STUDIO">SIZZLE<span class="dot">.</span><small>FOOD PHOTO</small></a>
+    <nav class="nav-links" id="navlinks">
+      <a class="link" href="#strength">強み</a>
+      <a class="link" href="#voice">お客様の声</a>
+      <a class="link" href="#flow">撮影の流れ</a>
+      <a class="link" href="#price">料金</a>
+      <a class="link" href="#gallery">作例</a>
+      <a class="nav-tel" href="tel:0000000000"><small>お電話でのご相談</small>〔00-0000-0000〕</a>
+      <a class="btn btn-primary" href="#contact">無料で相談する</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Food Photography Studio</span>
+      <h1>美味しそうな一枚が、<br>そのまま<span class="hl">売上</span>になる。</h1>
+      <p class="lead">通販・カタログ・パッケージ・ECで「選ばれる」食品写真を、企画から撮影・納品までワンストップで。食品に特化したシズル演出で、ただの記録写真を“売れる写真”に変えます。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">無料で見積り・相談する<span class="arw">→</span></a>
+        <a class="btn btn-ghost" href="#gallery">撮影実績を見る</a>
+      </div>
+      <div class="chips">
+        <span class="chip">累計 <b>12,000</b> カット</span>
+        <span class="chip">取引 <b>300</b> 社</span>
+        <span class="chip">1カットから対応</span>
+        <span class="chip">オンライン立会 OK</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="frame">
+        <div class="placeholder-art art-warm"></div>
+        <div class="ph-label"><span class="ic">🍳</span>メイン写真をここに<br>（一番おいしそうな代表カット）</div>
+      </div>
+      <div class="stamp"><span class="num">1.5<span style="font-size:1.1rem">倍</span></span><small>売上アップ実績</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEMS ============ -->
+<section class="section" id="problem">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Problem</span>
+      <h2>その写真、おいしさが伝わっていますか？</h2>
+      <p>食品の売上は「写真」で大きく変わります。こんなお悩み、ありませんか。</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob reveal"><div class="pn">01</div><h3>自社で撮ると、なぜか美味しそうに見えない</h3><p>光や構図、シズルの出し方で仕上がりは大きく変わります。</p></div>
+      <div class="prob reveal"><div class="pn">02</div><h3>写真を変えても、売上につながる実感がない</h3><p>「記録写真」と「売れる写真」は設計思想が違います。</p></div>
+      <div class="prob reveal"><div class="pn">03</div><h3>撮影費用が不透明で、予算が読めない</h3><p>スタジオ代・食器代・人件費…内訳が見えにくい。</p></div>
+      <div class="prob reveal"><div class="pn">04</div><h3>食器・小道具・場所の準備が大変</h3><p>調理からスタイリングまで、手間とコストがかさむ。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION / BEFORE-AFTER ============ -->
+<section class="section solve" id="solution">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Why we sell</span>
+      <h2>「売れる見せ方」には、理由があります。</h2>
+      <p>湯気・照り・みずみずしさ、そして構図と光。食欲を動かす要素を一枚に設計します。</p>
+    </div>
+    <div class="ba">
+      <div class="frame">
+        <span class="tag before">Before / 自社撮影</span>
+        <div class="placeholder-art art-cool"></div>
+        <div class="ph-label" style="color:rgba(36,27,20,.55)">撮影前の写真をここに</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="frame">
+        <span class="tag after">After / プロ撮影</span>
+        <div class="placeholder-art art-warm"></div>
+        <div class="ph-label" style="color:rgba(36,27,20,.6)">仕上がり写真をここに</div>
+      </div>
+    </div>
+    <p class="solve-note">※ Before / After は御社の実際の撮影事例に差し替えてください。最も説得力のある訴求になります。</p>
+  </div>
+</section>
+
+<!-- ============ STRENGTHS ============ -->
+<section class="section" id="strength">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Our Strength</span>
+      <h2>選ばれる、3つの理由</h2>
+      <p>長年の撮影力に、食品特化のノウハウを掛け合わせています。</p>
+    </div>
+    <div class="str">
+      <div class="str-card reveal">
+        <div class="top art-warm"><span class="knum">1</span></div>
+        <div class="body"><h3>シズルを操る、フード専門のディレクション</h3><p>湯気・照り・箸上げ。食欲を動かす演出を、盛り付けからスタイリングまで一貫して設計します。</p></div>
+      </div>
+      <div class="str-card reveal">
+        <div class="top art-cool"><span class="knum">2</span></div>
+        <div class="body"><h3>撮影から仕上げまで、ワンストップ</h3><p>〔御社の強み〕の撮影実績に、フード特化の体制をプラス。企画・調理・撮影・レタッチまで一気通貫で対応します。</p></div>
+      </div>
+      <div class="str-card reveal">
+        <div class="top art-warm"><span class="knum">3</span></div>
+        <div class="body"><h3>1カット単位・明朗会計</h3><p>必要な分だけ、込み込み価格で。費用が分かりやすく、はじめての方でも安心してご依頼いただけます。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACK RECORD ============ -->
+<section class="section stats" id="stats">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Track Record</span>
+      <h2>実績が、品質の証明です</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal"><div><span class="num">12,000</span><span class="unit">カット</span></div><div class="lbl">累計撮影カット数</div></div>
+      <div class="stat reveal"><div><span class="num">300</span><span class="unit">社</span></div><div class="lbl">取引企業数</div></div>
+      <div class="stat reveal"><div><span class="num">98</span><span class="unit">%</span></div><div class="lbl">リピート率</div></div>
+      <div class="stat reveal"><div><span class="num">15</span><span class="unit">ジャンル</span></div><div class="lbl">対応カテゴリ</div></div>
+    </div>
+    <p class="clients">
+      <b>主な取引先（一例）：</b><br>
+      〔取引先A〕、〔取引先B〕、〔取引先C〕、〔取引先D〕、〔取引先E〕、〔取引先F〕、<br>
+      〔取引先G〕、〔取引先H〕 他多数（※順不同・敬称略）
+    </p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="voice">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Customer Voice</span>
+      <h2>お客様の声</h2>
+      <p>「写真を変えたら、数字が動いた」。実際の成果をご紹介します。</p>
+    </div>
+    <div class="voices">
+      <div class="voice reveal">
+        <p class="q">パッケージをリニューアルしたら、売上が<em>1.5倍</em >に。</p>
+        <p>「美味しそうだったので選んだ」というお客様の声も増えました。撮り直しの価値を実感しています。</p>
+        <div class="who"><span class="ava"></span><div><b>〔食品メーカー A社〕</b><br><span>商品開発部 ご担当者様</span></div></div>
+      </div>
+      <div class="voice reveal">
+        <p class="q">EC掲載後、<em>レビュー評価とCVRが改善</em>。</p>
+        <p>商品ページの写真を差し替えただけで、購入率が目に見えて上がりました。費用以上の効果でした。</p>
+        <div class="who"><span class="ava"></span><div><b>〔EC事業者 B社〕</b><br><span>マーケティング ご担当者様</span></div></div>
+      </div>
+      <div class="voice reveal">
+        <p class="q">カタログ撮影を<em>一括でお任せ</em>でき、助かりました。</p>
+        <p>スピードと仕上がりに満足しています。毎シーズン、継続してお願いしています。</p>
+        <div class="who"><span class="ava"></span><div><b>〔通販会社 C社〕</b><br><span>販促ご担当者様</span></div></div>
+      </div>
+    </div>
+    <p class="solve-note" style="color:var(--ink-faint);">※ 上記はレイアウト確認用の掲載例です。実際のお客様の声・社名に差し替えてください。</p>
+  </div>
+</section>
+
+<!-- ============ FLOW ============ -->
+<section class="section stats" id="flow">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Flow</span>
+      <h2>ご依頼から納品まで、ワンストップ</h2>
+      <p>オンラインでの打ち合わせ・撮影立会にも対応しています。</p>
+    </div>
+    <div class="flow">
+      <div class="step reveal"><span class="sn">01</span><h3>お問い合わせ</h3><p>電話・メール・フォームからお気軽にご連絡ください。</p></div>
+      <div class="step reveal"><span class="sn">02</span><h3>お打ち合わせ</h3><p>イメージや用途をヒアリングし、演出をご提案します。<span class="badge">オンライン可</span></p></div>
+      <div class="step reveal"><span class="sn">03</span><h3>スタジオ撮影</h3><p>調理・スタイリング・撮影を実施。<span class="badge">立会可</span></p></div>
+      <div class="step reveal"><span class="sn">04</span><h3>納品</h3><p>レタッチ後、データでスピーディーにお届けします。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section" id="price">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Price</span>
+      <h2>撮影は1カットから。料金はすべて込みで。</h2>
+      <p>カメラマン代・コーディネート代・スタジオ代・備品代をまとめた、分かりやすい価格設定です。</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan reveal">
+        <div class="pname">商品形態撮影</div>
+        <div class="psub">シンプルな商品単体カット</div>
+        <div class="pprice"><span class="yen">¥</span><span class="val">15,000</span><span class="tilde">〜</span></div>
+        <div class="pcut">／ 1カット（jpg納品）</div>
+        <ul>
+          <li>商品をそのまま撮影</li>
+          <li>白背景・簡易演出</li>
+          <li>EC・一覧用に最適</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">このプランで相談</a>
+      </div>
+      <div class="plan feat reveal">
+        <span class="ribbon">一番人気</span>
+        <div class="pname">盛り付けイメージ撮影</div>
+        <div class="psub">シズル感を演出した訴求カット</div>
+        <div class="pprice"><span class="yen">¥</span><span class="val">35,000</span><span class="tilde">〜</span></div>
+        <div class="pcut">／ 1カット（jpg納品）</div>
+        <ul>
+          <li><b>カメラマン代</b>込み</li>
+          <li><b>フードコーディネート代</b>込み</li>
+          <li><b>スタジオ代・備品代</b>込み</li>
+          <li>料理アレンジ・シズル演出（湯気・箸上げ等）込み</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">このプランで相談</a>
+      </div>
+      <div class="plan reveal">
+        <div class="pname">パッケージ撮影</div>
+        <div class="psub">商品パッケージ用の料理撮影</div>
+        <div class="pprice"><span class="yen">¥</span><span class="val">57,000</span><span class="tilde">〜</span></div>
+        <div class="pcut">／ 1カット（tiff納品）</div>
+        <ul>
+          <li>デザインデータに合わせて撮影</li>
+          <li>高解像度（印刷対応）</li>
+          <li>コーディネート・備品込み</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact">このプランで相談</a>
+      </div>
+    </div>
+    <p class="price-notes">
+      ※ 金額は設定例です。御社の体制に合わせて調整してください。&nbsp; ※ 食材を弊社で用意する場合、食材費は別途。&nbsp; ※ 食器レンタルが必要な場合、別途費用がかかります。&nbsp; ※ レシピ作成・デザイン制作も併せてご相談いただけます。&nbsp; ※ 価格はすべて税込／税抜の表記方針を統一してください。
+    </p>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="section stats" id="compare">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Cost Comparison</span>
+      <h2>「費用が分かりやすい」と好評です</h2>
+      <p>盛り付けイメージ写真 ×3カットを半日で撮影した場合の比較（一例）。</p>
+    </div>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th></th><th class="us">当社</th><th>A社</th><th>B社</th><th>C社</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>スタジオ代</th><td class="us">込み</td><td>込み</td><td>25,000</td><td>27,000</td></tr>
+          <tr><th>食器・備品代</th><td class="us">込み</td><td>35,000</td><td>35,000</td><td>35,000</td></tr>
+          <tr><th>コーディネート代</th><td class="us">込み</td><td>35,000</td><td>50,000〜</td><td>35,000</td></tr>
+          <tr><th>撮影代</th><td class="us">105,000</td><td>50,000</td><td>50,000</td><td>80,000</td></tr>
+          <tr class="total"><th>合計</th><td class="us">105,000</td><td>120,000</td><td>160,000</td><td>177,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-cap">※ 比較は一例です。実際の見積りはお問い合わせください。金額はすべて差し替え可能です。</p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Gallery</span>
+      <h2>撮影実績</h2>
+      <p>テーマに合わせて、プロが多彩な見せ方をご提案します。あらゆるジャンルに対応。</p>
+    </div>
+
+    <div class="gal-cat">
+      <h3>お弁当 <span class="tagjp">BENTO</span></h3>
+      <div class="gal-row">
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+      </div>
+    </div>
+
+    <div class="gal-cat">
+      <h3>麺・主食 <span class="tagjp">NOODLE</span></h3>
+      <div class="gal-row">
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+      </div>
+    </div>
+
+    <div class="gal-cat">
+      <h3>精肉・鮮魚・ドリンク <span class="tagjp">VARIETY</span></h3>
+      <div class="gal-row">
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+        <div class="gtile"><div class="glabel art-warm"></div></div>
+        <div class="gtile"><div class="glabel art-cool"></div></div>
+      </div>
+    </div>
+    <p class="solve-note" style="color:var(--ink-faint);">※ タイルは御社の作例画像に差し替えてください。Instagram連携の導線を置くのも効果的です。</p>
+  </div>
+</section>
+
+<!-- ============ ACCESS ============ -->
+<section class="section stats" id="access">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Access</span>
+      <h2>撮影スタジオ</h2>
+    </div>
+    <div class="access access-grid">
+      <div>
+        <h3>〔スタジオ名〕</h3>
+        <div class="info-row"><div class="k">所在地</div><div class="v">〒000-0000　〔住所を入力〕</div></div>
+        <div class="info-row"><div class="k">アクセス</div><div class="v">〔最寄駅〕から徒歩〔0〕分</div></div>
+        <div class="info-row"><div class="k">設備</div><div class="v">キッチン完備／食器・クロス・背景多数／撮影備品一式</div></div>
+        <div class="info-row"><div class="k">対応</div><div class="v">スタジオ撮影・オンライン立会・出張撮影〔要相談〕</div></div>
+      </div>
+      <div class="map">Googleマップの埋め込みをここに</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section final" id="contact">
+  <div class="wrap">
+    <h2>お見積り・ご相談は無料です。</h2>
+    <p>「この商品をもっと美味しそうに撮りたい」——まずはお気軽にご相談ください。</p>
+    <div class="final-cta">
+      <a class="btn btn-white" href="#contact">WEBで問い合わせる<span class="arw">→</span></a>
+      <a class="telbox" href="tel:0000000000"><small>お電話でのご相談</small>〔00-0000-0000〕</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="logo">SIZZLE<span class="dot">.</span></span>
+        <p>食品に特化した撮影で、御社の商品を“売れる一枚”に。企画から撮影・納品までワンストップでサポートします。</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Service</h4>
+          <a href="#price">料理写真撮影</a>
+          <a href="#price">パッケージ撮影</a>
+          <a href="#flow">撮影の流れ</a>
+          <a href="#gallery">作例</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">会社概要</a>
+          <a href="#access">アクセス</a>
+          <a href="#contact">お問い合わせ</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>〔貴社名〕／〒000-0000 〔住所〕／TEL 〔00-0000-0000〕</span>
+      <span>© <span id="yr"></span> 〔貴社名〕 All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // sticky header shadow
+  const hdr = document.getElementById('hdr');
+  addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 10), {passive:true});
+
+  // mobile nav
+  const hamb = document.getElementById('hamb');
+  const nav = document.getElementById('navlinks');
+  hamb.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    hamb.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); hamb.setAttribute('aria-expanded', false);
+  }));
+
+  // scroll reveal
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
