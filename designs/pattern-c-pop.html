@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C案 ポップ・シズル｜食品写真撮影</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6E9; --cream-2:#FDEBCF; --ink:#2A1A10; --ink-soft:#6B5647;
+    --orange:#F4531B; --orange-d:#D63C08; --yellow:#FFC53D; --green:#1F9E6B; --pink:#FF7A59;
+    --line:#EAD9BF; --maxw:1160px;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.8;font-weight:500;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;} a{color:inherit;text-decoration:none;}
+  .anton{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{display:inline-block;background:var(--ink);color:var(--yellow);font-family:"Anton";letter-spacing:.14em;font-size:.78rem;padding:.35em .9em;border-radius:999px;text-transform:uppercase;}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:900;font-size:1rem;padding:.9em 1.8em;border-radius:999px;transition:.2s;border:3px solid var(--ink);}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:5px 5px 0 var(--ink);}
+  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .btn-yellow{background:var(--yellow);color:var(--ink);box-shadow:5px 5px 0 var(--ink);}
+  .btn-yellow:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .section{padding:92px 0;}
+  .shead{text-align:center;max-width:36em;margin:0 auto 52px;}
+  .shead h2{font-family:"Anton";font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.15;margin:.35em 0 .3em;}
+  .shead h2 em{font-style:normal;color:var(--orange);}
+  .shead p{color:var(--ink-soft);}
+  header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:3px solid var(--ink);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .logo{font-family:"Anton";font-size:1.6rem;letter-spacing:.02em;}
+  .logo b{color:var(--orange);}
+  .nav-links{display:flex;gap:1.4rem;align-items:center;}
+  .nav-links a.link{font-weight:700;font-size:.9rem;}
+  .nav-links a.link:hover{color:var(--orange);}
+  .nav-links .btn{padding:.55em 1.2em;font-size:.85rem;box-shadow:3px 3px 0 var(--ink);}
+  /* hero */
+  .hero{padding:60px 0 76px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+  .hero h1{font-family:"Anton";font-size:clamp(2.8rem,6vw,5rem);line-height:1.02;margin:.3em 0 .35em;letter-spacing:.005em;}
+  .hero h1 em{font-style:normal;color:var(--orange);-webkit-text-stroke:0;position:relative;}
+  .hero h1 .hilite{background:var(--yellow);padding:0 .12em;border-radius:6px;box-decoration-break:clone;}
+  .hero .lead{font-size:1.08rem;color:var(--ink-soft);max-width:26em;margin:0 0 1.7em;font-weight:500;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual .ph{border:4px solid var(--ink);border-radius:24px;overflow:hidden;box-shadow:10px 10px 0 var(--ink);transform:rotate(2deg);}
+  .hero-visual .ph img{aspect-ratio:4/5;object-fit:cover;width:100%;}
+  .hero-visual .pop{position:absolute;font-family:"Anton";}
+  .hero-visual .pop.tag{top:-18px;left:-18px;background:var(--green);color:#fff;border:3px solid var(--ink);border-radius:999px;padding:.5em 1em;transform:rotate(-8deg);font-size:.95rem;}
+  .hero-visual .pop.badge{right:-16px;bottom:26px;background:var(--yellow);border:4px solid var(--ink);border-radius:50%;width:104px;height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(8deg);line-height:1;text-align:center;}
+  .hero-visual .pop.badge b{font-size:2rem;} .hero-visual .pop.badge span{font-family:"Noto Sans JP";font-weight:900;font-size:.6rem;}
+  /* marquee stats */
+  .band{background:var(--ink);color:var(--cream);padding:22px 0;overflow:hidden;}
+  .band .wrap{display:flex;justify-content:space-around;gap:24px;flex-wrap:wrap;text-align:center;}
+  .band b{font-family:"Anton";font-size:2rem;color:var(--yellow);display:block;line-height:1;}
+  .band b i{color:var(--orange);font-style:normal;font-size:1.1rem;}
+  .band span{font-size:.75rem;color:#C9BEB0;letter-spacing:.08em;}
+  /* problem */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .card{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:28px 24px;box-shadow:6px 6px 0 var(--ink);}
+  .card .ico{width:60px;height:60px;border-radius:16px;background:var(--cream-2);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:14px;}
+  .card h3{font-size:1.15rem;font-weight:900;margin:.2em 0 .3em;line-height:1.4;}
+  .card p{color:var(--ink-soft);font-size:.9rem;margin:0;}
+  /* solution block */
+  .solve{background:var(--orange);color:#fff;border-top:4px solid var(--ink);border-bottom:4px solid var(--ink);}
+  .solve .ba{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .solve figure{margin:0;position:relative;border:4px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:8px 8px 0 rgba(0,0,0,.35);}
+  .solve figure img{aspect-ratio:4/3;object-fit:cover;width:100%;}
+  .solve .tag{position:absolute;top:12px;left:12px;font-family:"Anton";background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:.25em .9em;font-size:.85rem;}
+  .solve .tag.after{background:var(--yellow);}
+  /* strengths */
+  .str{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .str .item{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:28px 24px;box-shadow:6px 6px 0 var(--ink);}
+  .str .item .n{font-family:"Anton";color:#fff;background:var(--green);border:2px solid var(--ink);border-radius:999px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px;}
+  .str .item:nth-child(2) .n{background:var(--orange);} .str .item:nth-child(3) .n{background:var(--pink);}
+  .str .item h3{font-size:1.2rem;font-weight:900;margin:0 0 .3em;line-height:1.4;}
+  .str .item p{color:var(--ink-soft);font-size:.9rem;margin:0;}
+  /* gallery */
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .gal a{border:3px solid var(--ink);border-radius:16px;overflow:hidden;position:relative;display:block;box-shadow:5px 5px 0 var(--ink);transition:.2s;}
+  .gal a:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .gal img{aspect-ratio:1/1;object-fit:cover;width:100%;}
+  .gal a span{position:absolute;left:10px;bottom:9px;font-family:"Anton";font-size:.85rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.7);}
+  /* pricing */
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .plan{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:30px 26px;box-shadow:6px 6px 0 var(--ink);}
+  .plan.feat{background:var(--yellow);}
+  .plan h3{font-weight:900;font-size:1.1rem;margin:0 0 .2em;}
+  .plan .amt{font-family:"Anton";font-size:2.3rem;color:var(--orange-d);line-height:1;margin:.2em 0 .4em;}
+  .plan.feat .amt{color:var(--ink);}
+  .plan .amt small{font-family:"Noto Sans JP";font-size:.8rem;font-weight:700;color:var(--ink-soft);}
+  .plan ul{list-style:none;padding:0;margin:1em 0 0;font-size:.9rem;color:var(--ink-soft);font-weight:500;}
+  .plan li{padding:.35em 0 .35em 1.5em;position:relative;}
+  .plan li::before{content:"●";position:absolute;left:0;color:var(--green);font-size:.7em;top:.55em;}
+  /* cta */
+  .cta{text-align:center;}
+  .cta-box{background:var(--ink);color:var(--cream);border-radius:28px;padding:64px 32px;box-shadow:10px 10px 0 var(--orange);}
+  .cta-box h2{font-family:"Anton";font-size:clamp(2rem,4.4vw,3.2rem);margin:0 0 .3em;}
+  .cta-box h2 em{font-style:normal;color:var(--yellow);}
+  .cta-box p{color:#D6CCBE;margin:0 0 1.6em;}
+  footer{background:var(--ink);color:#B7AB9C;padding:40px 0;text-align:center;font-size:.85rem;}
+  .note{background:var(--yellow);color:var(--ink);font-family:"Anton";font-size:.82rem;text-align:center;padding:8px;letter-spacing:.04em;border-bottom:3px solid var(--ink);}
+  @media(max-width:860px){
+    .hero-grid,.cards3,.solve .ba,.str,.price{grid-template-columns:1fr;}
+    .gal{grid-template-columns:1fr 1fr;} .nav-links a.link{display:none;} .section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="note">C案：ポップ・シズル（暖色ブロック × 極太Anton × 親しみ・元気）— 数字・社名はサンプルです</div>
+<header><div class="wrap nav">
+  <div class="logo">FOOD<b>!</b>PHOTO</div>
+  <nav class="nav-links"><a class="link" href="#strength">強み</a><a class="link" href="#gallery">作例</a><a class="link" href="#price">料金</a><a class="btn btn-primary" href="#cta">無料相談</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">売れる食品写真</span>
+    <h1>美味しい、を<br><em>ちゃんと</em><br><span class="hilite">売れる</span>写真に。</h1>
+    <p class="lead">通販・カタログ・パッケージで選ばれる食品写真。企画から撮影・納品までワンストップ。シズル、盛りました。</p>
+    <div class="hero-cta"><a class="btn btn-primary" href="#cta">無料で相談する →</a><a class="btn btn-yellow" href="#gallery">作例を見る</a></div>
+  </div>
+  <div class="hero-visual">
+    <div class="ph"><img src="../images/hero-food-photo.png" alt="美味しそうな食品写真"></div>
+    <div class="pop tag">シズル◎</div>
+    <div class="pop badge anton"><b>1.8x</b><span>売上UP</span></div>
+  </div>
+</div></section>
+
+<div class="band"><div class="wrap">
+  <div><b>23,000<i>+</i></b><span>累計撮影カット</span></div>
+  <div><b>420<i>社</i></b><span>取引実績</span></div>
+  <div><b>98<i>%</i></b><span>リピート率</span></div>
+  <div><b>1<i>カット〜</i></b><span>明朗会計</span></div>
+</div></div>
+
+<section class="section"><div class="wrap">
+  <div class="shead"><h2>その写真、<em>もったいない</em>かも？</h2><p>こんなお悩み、ありませんか。</p></div>
+  <div class="cards3">
+    <div class="card"><div class="ico">📷</div><h3>美味しそうに<br>見えない</h3><p>記録写真止まりで魅力が伝わらない。</p></div>
+    <div class="card"><div class="ico">📉</div><h3>変えても<br>売上が伸びない</h3><p>「見せ方」の設計がないまま撮っている。</p></div>
+    <div class="card"><div class="ico">💸</div><h3>費用が<br>不透明</h3><p>内訳が見えにくく予算が読めない。</p></div>
+  </div>
+</div></section>
+
+<section class="solve section" id="solution"><div class="wrap">
+  <div class="shead"><h2 style="color:#fff;">「売れる見せ方」には<br>理由がある。</h2></div>
+  <div class="ba">
+    <figure><span class="tag">Before</span><img src="../images/solution-workflow.png" alt="撮影前"></figure>
+    <figure><span class="tag after">After</span><img src="../images/solution-deliverables.png" alt="仕上がり"></figure>
+  </div>
+</div></section>
+
+<section class="section" id="strength"><div class="wrap">
+  <div class="shead"><h2>選ばれる、<em>3つ</em>の理由</h2></div>
+  <div class="str">
+    <div class="item"><div class="n anton">1</div><h3>食品特化の<br>シズル演出</h3><p>通販で培った「売れる見せ方」。ジャンル別に最適化。</p></div>
+    <div class="item"><div class="n anton">2</div><h3>企画〜納品<br>ワンストップ</h3><p>撮影・調理・スタイリング・レタッチまで一括。窓口はひとつ。</p></div>
+    <div class="item"><div class="n anton">3</div><h3>1カットから<br>明朗会計</h3><p>撮影・コーディネート・備品代すべて込み。</p></div>
+  </div>
+</div></section>
+
+<section class="section" id="gallery" style="background:var(--cream-2);"><div class="wrap">
+  <div class="shead"><h2>撮影実績</h2></div>
+  <div class="gal">
+    <a href="#"><img src="../images/gallery-bento.png" alt="弁当"><span>お弁当</span></a>
+    <a href="#"><img src="../images/gallery-meat.png" alt="肉"><span>精肉</span></a>
+    <a href="#"><img src="../images/gallery-seafood.png" alt="海鮮"><span>海鮮</span></a>
+    <a href="#"><img src="../images/gallery-sweets.png" alt="スイーツ"><span>スイーツ</span></a>
+    <a href="#"><img src="../images/gallery-noodles.png" alt="麺"><span>麺類</span></a>
+    <a href="#"><img src="../images/gallery-drink.png" alt="ドリンク"><span>ドリンク</span></a>
+    <a href="#"><img src="../images/gallery-deli.png" alt="惣菜"><span>デリ</span></a>
+    <a href="#"><img src="../images/gallery-seasonal.png" alt="季節"><span>季節商品</span></a>
+  </div>
+</div></section>
+
+<section class="section" id="price"><div class="wrap">
+  <div class="shead"><h2>撮影は<em>1カット</em>から</h2><p>カメラマン代・コーディネート代・備品代すべて込み。</p></div>
+  <div class="price">
+    <div class="plan"><h3>商品形態撮影</h3><div class="amt">¥15,000<small>〜/カット</small></div><ul><li>白背景・切り抜き対応</li><li>物撮り中心</li><li>データ納品込み</li></ul></div>
+    <div class="plan feat"><h3>盛り付けイメージ撮影</h3><div class="amt">¥35,000<small>/カット</small></div><ul><li>フードコーディネート込み</li><li>食器・クロス多数</li><li>シズル演出</li></ul></div>
+    <div class="plan"><h3>パッケージ撮影</h3><div class="amt">¥57,000<small>/カット</small></div><ul><li>調理・盛り付け込み</li><li>商品訴求の設計</li><li>レタッチ込み</li></ul></div>
+  </div>
+</div></section>
+
+<section class="section cta" id="cta"><div class="wrap">
+  <div class="cta-box">
+    <h2>まずは<em>無料相談</em>から！</h2>
+    <p>「この商品をもっと美味しそうに撮りたい」。お気軽にどうぞ。</p>
+    <a class="btn btn-yellow" href="#">WEBで問い合わせる →</a>
+  </div>
+</div></section>
+<footer><div class="wrap">© 2026 FOOD!PHOTO（サンプル）— C案 ポップ・シズル</div></footer>
+</body>
+</html>

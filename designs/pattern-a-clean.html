@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A案 クリーン＆信頼｜食品写真撮影</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-2:#F5F7F6; --ink:#20272B; --ink-soft:#5A646B; --ink-faint:#8B959B;
+    --orange:#EC5A1E; --orange-d:#C8420C; --green:#2E8B62; --green-d:#1F6B49;
+    --line:#E6EAE8; --shadow:0 20px 45px -30px rgba(32,39,43,.4); --maxw:1140px;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.85;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;} a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{font-weight:900;letter-spacing:.16em;font-size:.75rem;color:var(--orange);display:inline-flex;align-items:center;gap:.6em;text-transform:uppercase;}
+  .eyebrow::before{content:"";width:24px;height:3px;background:var(--orange);}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;padding:.9em 1.7em;border-radius:8px;transition:.2s;}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 12px 26px -12px rgba(236,90,30,.8);}
+  .btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);}
+  .btn-ghost{border:2px solid var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:#fff;}
+  .section{padding:96px 0;} .section.alt{background:var(--bg-2);}
+  .shead{text-align:center;max-width:40em;margin:0 auto 56px;}
+  .shead h2{font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:900;line-height:1.35;margin:.5em 0 .3em;}
+  .shead p{color:var(--ink-soft);}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .logo{font-weight:900;font-size:1.35rem;letter-spacing:.02em;}
+  .logo b{color:var(--orange);}
+  .nav-links{display:flex;gap:1.5rem;align-items:center;}
+  .nav-links a{font-size:.9rem;font-weight:500;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--orange);}
+  .nav-links .btn{padding:.6em 1.2em;font-size:.85rem;}
+  /* hero */
+  .hero{padding:70px 0 80px;background:linear-gradient(180deg,#fff, #F5F7F6);}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,4vw,3.4rem);font-weight:900;line-height:1.24;margin:.4em 0 .5em;letter-spacing:.01em;}
+  .hero h1 mark{background:linear-gradient(transparent 62%, rgba(236,90,30,.24) 62%);color:inherit;padding:0 .05em;}
+  .hero .lead{color:var(--ink-soft);font-size:1.05rem;max-width:30em;margin:0 0 1.8em;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual img{border-radius:16px;box-shadow:var(--shadow);aspect-ratio:4/5;object-fit:cover;width:100%;}
+  .hero-badge{position:absolute;right:-14px;bottom:24px;background:var(--green);color:#fff;border-radius:14px;padding:14px 18px;text-align:center;box-shadow:0 16px 30px -14px rgba(46,139,98,.7);}
+  .hero-badge b{display:block;font-size:1.9rem;font-weight:900;line-height:1;}
+  .hero-badge small{font-size:.65rem;letter-spacing:.1em;}
+  /* stats bar */
+  .stats{background:var(--ink);color:#fff;}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:44px;padding-bottom:44px;}
+  .stat{text-align:center;} .stat b{display:block;font-size:2.4rem;font-weight:900;color:#fff;line-height:1;}
+  .stat b i{color:var(--orange);font-style:normal;font-size:1.3rem;}
+  .stat span{font-size:.8rem;color:#B9C1C4;letter-spacing:.05em;}
+  /* problem cards */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:var(--shadow);}
+  .card .no{font-weight:900;color:var(--orange);font-size:.85rem;letter-spacing:.1em;}
+  .card h3{font-size:1.15rem;font-weight:900;margin:.4em 0 .3em;line-height:1.5;}
+  .card p{color:var(--ink-soft);font-size:.92rem;margin:0;}
+  .card .ico{width:52px;height:52px;border-radius:12px;background:rgba(236,90,30,.1);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;}
+  /* solution before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;}
+  .ba figure{margin:0;position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
+  .ba figure img{aspect-ratio:4/3;object-fit:cover;width:100%;}
+  .ba .tag{position:absolute;top:14px;left:14px;background:#fff;color:var(--ink);font-weight:900;font-size:.78rem;padding:.4em .9em;border-radius:6px;}
+  .ba .tag.after{background:var(--green);color:#fff;}
+  /* strengths */
+  .str{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .str .item .n{font-weight:900;color:var(--green);font-size:.85rem;letter-spacing:.12em;}
+  .str .item h3{font-size:1.25rem;font-weight:900;margin:.2em 0 .4em;}
+  .str .item p{color:var(--ink-soft);font-size:.92rem;}
+  .str .item .bar{width:44px;height:4px;background:var(--orange);border-radius:2px;margin:14px 0;}
+  /* gallery */
+  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .gal a{position:relative;border-radius:12px;overflow:hidden;display:block;}
+  .gal img{aspect-ratio:1/1;object-fit:cover;width:100%;transition:.4s;}
+  .gal a:hover img{transform:scale(1.06);}
+  .gal a span{position:absolute;left:12px;bottom:10px;color:#fff;font-weight:700;font-size:.85rem;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+  /* pricing */
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .plan{border:1px solid var(--line);border-radius:16px;padding:32px 28px;background:#fff;box-shadow:var(--shadow);}
+  .plan.feat{border:2px solid var(--orange);position:relative;}
+  .plan.feat::before{content:"人気";position:absolute;top:-13px;left:28px;background:var(--orange);color:#fff;font-size:.72rem;font-weight:700;padding:.3em 1em;border-radius:6px;}
+  .plan h3{font-size:1.1rem;font-weight:900;margin:0 0 .2em;}
+  .plan .amt{font-size:2.1rem;font-weight:900;color:var(--orange);line-height:1;margin:.3em 0;}
+  .plan .amt small{font-size:.85rem;color:var(--ink-faint);font-weight:500;}
+  .plan ul{list-style:none;padding:0;margin:1.2em 0 0;font-size:.9rem;color:var(--ink-soft);}
+  .plan li{padding:.35em 0 .35em 1.5em;position:relative;}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:900;}
+  /* cta */
+  .cta{background:var(--orange);color:#fff;text-align:center;}
+  .cta h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:900;margin:0 0 .4em;}
+  .cta p{opacity:.95;margin:0 0 1.6em;}
+  .cta .btn-primary{background:#fff;color:var(--orange);}
+  .cta .btn-primary:hover{background:var(--ink);color:#fff;}
+  footer{background:var(--ink);color:#9AA4A9;padding:44px 0;font-size:.85rem;text-align:center;}
+  .note{background:#FFF7ED;border:1px dashed var(--orange);color:var(--orange-d);font-size:.8rem;text-align:center;padding:8px;}
+  @media(max-width:860px){
+    .hero-grid,.ba,.stats .wrap,.cards3,.str,.price{grid-template-columns:1fr;}
+    .stats .wrap{grid-template-columns:1fr 1fr;} .gal{grid-template-columns:1fr 1fr;}
+    .nav-links a.link{display:none;} .section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="note">A案：クリーン＆信頼（参考サイト直系｜白基調 × オレンジ × グリーン）— 数字・社名はサンプルです</div>
+<header><div class="wrap nav">
+  <div class="logo">FOOD<b>PHOTO</b></div>
+  <nav class="nav-links">
+    <a class="link" href="#strength">強み</a><a class="link" href="#gallery">作例</a><a class="link" href="#price">料金</a>
+    <a class="btn btn-primary" href="#cta">無料相談 →</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">売れる食品写真</span>
+    <h1>その一枚が、<br><mark>売上を動かす</mark>。</h1>
+    <p class="lead">通販・カタログ・パッケージで「選ばれる」食品写真を、企画から撮影・納品までワンストップで。シズル感を操るフード専門の撮影です。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#cta">無料で相談する →</a>
+      <a class="btn btn-ghost" href="#gallery">作例を見る</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="../images/hero-steak-glam.png" alt="シズル感のあるステーキの食品写真">
+    <div class="hero-badge"><b>1.8<small>倍</small></b><small>平均売上UP</small></div>
+  </div>
+</div></section>
+
+<section class="stats"><div class="wrap">
+  <div class="stat"><b>23,000<i>+</i></b><span>累計撮影カット</span></div>
+  <div class="stat"><b>420<i>社</i></b><span>取引実績</span></div>
+  <div class="stat"><b>98<i>%</i></b><span>リピート率</span></div>
+  <div class="stat"><b>1<i>カット〜</i></b><span>明朗会計</span></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Problem</span><h2>その写真、こんなお悩みありませんか？</h2></div>
+  <div class="cards3">
+    <div class="card"><div class="ico">📷</div><div class="no">01</div><h3>撮っても<br>美味しそうに見えない</h3><p>記録写真止まりで、商品の魅力が伝わらない。</p></div>
+    <div class="card"><div class="ico">📉</div><div class="no">02</div><h3>写真を変えても<br>売上が伸びない</h3><p>「見せ方」の設計がないまま撮っている。</p></div>
+    <div class="card"><div class="ico">💸</div><div class="no">03</div><h3>費用が不透明で<br>予算が読めない</h3><p>スタジオ代・食器代…内訳が見えにくい。</p></div>
+  </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Solution</span><h2>「売れる見せ方」には、理由があります</h2><p>ただ撮るのではなく、購買につながる一枚を設計します。</p></div>
+  <div class="ba">
+    <figure><span class="tag">Before</span><img src="../images/solution-workflow.png" alt="撮影前"></figure>
+    <figure><span class="tag after">After</span><img src="../images/solution-deliverables.png" alt="仕上がり"></figure>
+  </div>
+</div></section>
+
+<section class="section" id="strength"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Strength</span><h2>選ばれる、3つの理由</h2></div>
+  <div class="str">
+    <div class="item"><div class="n">REASON 01</div><h3>食品特化の<br>シズル演出</h3><div class="bar"></div><p>通販で培った「売れる見せ方」のノウハウ。ジャンル別に最適化します。</p></div>
+    <div class="item"><div class="n">REASON 02</div><h3>企画〜納品<br>ワンストップ</h3><div class="bar"></div><p>撮影・調理・スタイリング・レタッチまで一括対応。窓口はひとつ。</p></div>
+    <div class="item"><div class="n">REASON 03</div><h3>1カットから<br>明朗会計</h3><div class="bar"></div><p>撮影・コーディネート・備品代すべて込み。分かりやすい料金設定。</p></div>
+  </div>
+</div></section>
+
+<section class="section alt" id="gallery"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Gallery</span><h2>撮影実績</h2></div>
+  <div class="gal">
+    <a href="#"><img src="../images/gallery-bento.png" alt="弁当"><span>お弁当・惣菜</span></a>
+    <a href="#"><img src="../images/gallery-meat.png" alt="肉"><span>精肉</span></a>
+    <a href="#"><img src="../images/gallery-seafood.png" alt="海鮮"><span>海鮮</span></a>
+    <a href="#"><img src="../images/gallery-sweets.png" alt="スイーツ"><span>スイーツ</span></a>
+    <a href="#"><img src="../images/gallery-noodles.png" alt="麺"><span>麺類</span></a>
+    <a href="#"><img src="../images/gallery-drink.png" alt="ドリンク"><span>ドリンク</span></a>
+    <a href="#"><img src="../images/gallery-deli.png" alt="惣菜"><span>デリ</span></a>
+    <a href="#"><img src="../images/gallery-seasonal.png" alt="季節"><span>季節商品</span></a>
+  </div>
+</div></section>
+
+<section class="section" id="price"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Price</span><h2>撮影は1カットから</h2><p>カメラマン代・コーディネート代・備品代すべて込み。</p></div>
+  <div class="price">
+    <div class="plan"><h3>商品形態撮影</h3><div class="amt">¥15,000<small>〜/カット</small></div><ul><li>白背景・切り抜き対応</li><li>物撮り中心</li><li>データ納品込み</li></ul></div>
+    <div class="plan feat"><h3>盛り付けイメージ撮影</h3><div class="amt">¥35,000<small>/カット</small></div><ul><li>フードコーディネート込み</li><li>食器・クロス多数</li><li>シズル演出</li></ul></div>
+    <div class="plan"><h3>パッケージ撮影</h3><div class="amt">¥57,000<small>/カット</small></div><ul><li>調理・盛り付け込み</li><li>商品訴求の設計</li><li>レタッチ込み</li></ul></div>
+  </div>
+</div></section>
+
+<section class="section cta" id="cta"><div class="wrap">
+  <h2>お見積り・ご相談は無料です。</h2>
+  <p>「この商品をもっと美味しそうに撮りたい」。まずはお気軽に。</p>
+  <a class="btn btn-primary" href="#">WEBで問い合わせる →</a>
+</div></section>
+<footer><div class="wrap">© 2026 FOODPHOTO（サンプル）— A案 クリーン＆信頼</div></footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B案 シズル・エディトリアル｜食品写真撮影</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15110E; --bg-2:#1E1813; --panel:#241D17; --ink:#F3ECE2; --ink-soft:#B7AB9C; --ink-faint:#8A7E70;
+    --amber:#E0A560; --amber-2:#D98A3D; --line:rgba(243,236,226,.12); --maxw:1180px;
+  }
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.9;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;} a{color:inherit;text-decoration:none;}
+  .serif{font-family:"Noto Serif JP",serif;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{font-family:"Noto Serif JP",serif;font-weight:600;letter-spacing:.35em;font-size:.72rem;color:var(--amber);text-transform:uppercase;}
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:.92rem;padding:.95em 1.9em;border-radius:2px;transition:.25s;letter-spacing:.04em;}
+  .btn-primary{background:var(--amber);color:#1A1410;}
+  .btn-primary:hover{background:var(--amber-2);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
+  .section{padding:110px 0;}
+  .shead{max-width:34em;margin:0 0 60px;}
+  .shead h2{font-family:"Noto Serif JP",serif;font-weight:700;font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.5;margin:.5em 0 .3em;}
+  .shead p{color:var(--ink-soft);}
+  header{position:sticky;top:0;z-index:50;background:rgba(21,17,14,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .logo{font-family:"Noto Serif JP",serif;font-weight:700;font-size:1.4rem;letter-spacing:.18em;}
+  .logo b{color:var(--amber);font-weight:900;}
+  .nav-links{display:flex;gap:2rem;align-items:center;}
+  .nav-links a.link{font-size:.85rem;color:var(--ink-soft);letter-spacing:.08em;}
+  .nav-links a.link:hover{color:var(--amber);}
+  /* hero full bleed */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;}
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,17,14,.55) 0%,rgba(21,17,14,.2) 40%,rgba(21,17,14,.9) 100%);}
+  .hero .wrap{position:relative;z-index:2;padding-bottom:88px;padding-top:120px;}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:900;font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1.28;letter-spacing:.02em;margin:.35em 0 .5em;max-width:14em;}
+  .hero h1 em{color:var(--amber);font-style:normal;}
+  .hero .lead{color:var(--ink-soft);max-width:32em;font-size:1.05rem;margin:0 0 2em;}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  /* stats inline */
+  .kpis{display:flex;gap:56px;margin-top:56px;flex-wrap:wrap;}
+  .kpi b{font-family:"Noto Serif JP",serif;font-weight:900;font-size:2.4rem;color:var(--ink);line-height:1;display:block;}
+  .kpi b i{color:var(--amber);font-style:normal;font-size:1.2rem;}
+  .kpi span{font-size:.78rem;color:var(--ink-faint);letter-spacing:.12em;}
+  /* editorial split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .split.rev{direction:rtl;} .split.rev>*{direction:ltr;}
+  .split figure{margin:0;overflow:hidden;} .split figure img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(1.05);}
+  .split .num{font-family:"Noto Serif JP",serif;font-size:.8rem;letter-spacing:.3em;color:var(--amber);}
+  .split h3{font-family:"Noto Serif JP",serif;font-weight:700;font-size:1.7rem;line-height:1.5;margin:.4em 0 .5em;}
+  .split p{color:var(--ink-soft);}
+  /* problem list */
+  .plist{border-top:1px solid var(--line);}
+  .prow{display:grid;grid-template-columns:auto 1fr;gap:28px;padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+  .prow .pn{font-family:"Noto Serif JP",serif;color:var(--amber);font-size:1.5rem;}
+  .prow h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.3rem;margin:0 0 .2em;}
+  .prow p{color:var(--ink-soft);margin:0;font-size:.95rem;}
+  /* gallery mosaic */
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:10px;}
+  .mosaic a{overflow:hidden;position:relative;display:block;}
+  .mosaic a:nth-child(1){grid-column:span 2;grid-row:span 2;}
+  .mosaic a:nth-child(6){grid-column:span 2;}
+  .mosaic img{width:100%;height:100%;object-fit:cover;transition:.5s;}
+  .mosaic a:hover img{transform:scale(1.05);}
+  .mosaic a span{position:absolute;left:14px;bottom:12px;font-family:"Noto Serif JP",serif;font-size:.85rem;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.7);letter-spacing:.08em;}
+  /* pricing */
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .plan{background:var(--bg-2);padding:44px 32px;}
+  .plan.feat{background:var(--panel);}
+  .plan h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.15rem;margin:0 0 .4em;}
+  .plan .amt{font-family:"Noto Serif JP",serif;font-weight:900;font-size:2.1rem;color:var(--amber);margin:.2em 0 .5em;}
+  .plan .amt small{font-size:.8rem;color:var(--ink-faint);font-family:"Noto Sans JP";font-weight:500;}
+  .plan ul{list-style:none;padding:0;margin:0;font-size:.9rem;color:var(--ink-soft);}
+  .plan li{padding:.4em 0;border-top:1px solid var(--line);}
+  /* cta */
+  .cta{text-align:center;background:var(--bg-2);}
+  .cta h2{font-family:"Noto Serif JP",serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);margin:0 0 .4em;}
+  .cta p{color:var(--ink-soft);margin:0 0 1.8em;}
+  footer{border-top:1px solid var(--line);padding:44px 0;color:var(--ink-faint);font-size:.82rem;text-align:center;letter-spacing:.08em;}
+  .note{background:#241D17;border-bottom:1px solid var(--line);color:var(--amber);font-size:.78rem;text-align:center;padding:8px;letter-spacing:.05em;}
+  @media(max-width:860px){
+    .split,.price,.kpis{grid-template-columns:1fr;} .kpis{gap:32px;}
+    .mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:160px;} .mosaic a:nth-child(1){grid-column:span 2;}
+    .nav-links a.link{display:none;} .section{padding:72px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="note">B案：シズル・エディトリアル（ダーク × 大判写真 × 明朝見出しで高級感）— 数字・社名はサンプルです</div>
+<header><div class="wrap nav">
+  <div class="logo">SIZZLE<b>.</b></div>
+  <nav class="nav-links"><a class="link" href="#work">実績</a><a class="link" href="#gallery">作例</a><a class="link" href="#price">料金</a><a class="btn btn-primary" href="#cta">無料相談</a></nav>
+</div></header>
+
+<section class="hero">
+  <img class="bg" src="../images/hero-steak-glam.png" alt="シズル感のあるステーキ">
+  <div class="wrap">
+    <span class="eyebrow">Food Photography</span>
+    <h1>ひと皿の魅力を、<br><em>売れる一枚</em>に。</h1>
+    <p class="lead">通販・カタログ・パッケージで選ばれる食品写真を、企画から撮影・納品までワンストップで。シズルを操るフード専門の撮影。</p>
+    <div class="hero-cta"><a class="btn btn-primary" href="#cta">無料で相談する</a><a class="btn btn-ghost" href="#gallery">作例を見る</a></div>
+    <div class="kpis">
+      <div class="kpi"><b>23,000<i>+</i></b><span>累計撮影カット</span></div>
+      <div class="kpi"><b>1.8<i>倍</i></b><span>平均売上UP</span></div>
+      <div class="kpi"><b>420<i>社</i></b><span>取引実績</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Problem</span><h2>その写真は、<br>商品の価値を伝えていますか。</h2></div>
+  <div class="plist">
+    <div class="prow"><div class="pn">01</div><div><h3>美味しそうに見えない</h3><p>記録写真止まりで、シズル感が乏しく魅力が伝わらない。</p></div></div>
+    <div class="prow"><div class="pn">02</div><div><h3>写真を変えても売れない</h3><p>「見せ方」の設計がないまま撮影している。</p></div></div>
+    <div class="prow"><div class="pn">03</div><div><h3>費用が不透明</h3><p>スタジオ代・食器代・人件費…内訳が見えにくく予算が読めない。</p></div></div>
+  </div>
+</div></section>
+
+<section class="section" id="work" style="background:var(--bg-2);"><div class="wrap">
+  <div class="split">
+    <figure><img src="../images/solution-deliverables.png" alt="仕上がりの食品写真"></figure>
+    <div><div class="num">SOLUTION</div><h3>「売れる見せ方」には、<br>理由があります。</h3><p>光・角度・湯気の一瞬。購買につながる要素を計算して、ただの記録を“食べたくなる一枚”へ設計します。ジャンルごとの最適解を持っています。</p><a class="btn btn-ghost" href="#gallery" style="margin-top:1.4em;">作例で確かめる</a></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="split rev">
+    <figure><img src="../images/solution-workflow-natural.png" alt="ワンストップの制作体制"></figure>
+    <div><div class="num">ONE-STOP</div><h3>企画から納品まで、<br>窓口はひとつ。</h3><p>撮影・調理・スタイリング・レタッチまで一括対応。食器1,500種・クロス300種クラスの備品で、世界観をまるごと作り込みます。1カットから、明朗会計で。</p></div>
+  </div>
+</div></section>
+
+<section class="section" id="gallery" style="background:var(--bg-2);"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Gallery</span><h2>撮影実績</h2></div>
+  <div class="mosaic">
+    <a href="#"><img src="../images/gallery-meat.png" alt="精肉"><span>精肉</span></a>
+    <a href="#"><img src="../images/gallery-seafood.png" alt="海鮮"><span>海鮮</span></a>
+    <a href="#"><img src="../images/gallery-sweets.png" alt="スイーツ"><span>スイーツ</span></a>
+    <a href="#"><img src="../images/gallery-bento.png" alt="弁当"><span>お弁当</span></a>
+    <a href="#"><img src="../images/gallery-drink.png" alt="ドリンク"><span>ドリンク</span></a>
+    <a href="#"><img src="../images/gallery-noodles.png" alt="麺"><span>麺類</span></a>
+    <a href="#"><img src="../images/gallery-seasonal.png" alt="季節"><span>季節商品</span></a>
+  </div>
+</div></section>
+
+<section class="section" id="price"><div class="wrap">
+  <div class="shead"><span class="eyebrow">Price</span><h2>撮影は1カットから。</h2><p>カメラマン代・コーディネート代・備品代すべて込み。</p></div>
+  <div class="price">
+    <div class="plan"><h3>商品形態撮影</h3><div class="amt">¥15,000<small> 〜/カット</small></div><ul><li>白背景・切り抜き対応</li><li>物撮り中心</li><li>データ納品込み</li></ul></div>
+    <div class="plan feat"><h3>盛り付けイメージ撮影</h3><div class="amt">¥35,000<small> /カット</small></div><ul><li>フードコーディネート込み</li><li>食器・クロス多数</li><li>シズル演出</li></ul></div>
+    <div class="plan"><h3>パッケージ撮影</h3><div class="amt">¥57,000<small> /カット</small></div><ul><li>調理・盛り付け込み</li><li>商品訴求の設計</li><li>レタッチ込み</li></ul></div>
+  </div>
+</div></section>
+
+<section class="section cta" id="cta"><div class="wrap">
+  <h2>お見積り・ご相談は無料です。</h2>
+  <p>「この商品をもっと美味しそうに撮りたい」。まずはお気軽に。</p>
+  <a class="btn btn-primary" href="#">WEBで問い合わせる</a>
+</div></section>
+<footer><div class="wrap">© 2026 SIZZLE.（サンプル）— B案 シズル・エディトリアル</div></footer>
+</body>
+</html>
