@@ -177,7 +177,7 @@
   .prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;}
   .prob{
     position:relative;background:linear-gradient(135deg,#fff 0%,#FFF7F1 100%);
-    border:1px solid var(--line);border-radius:16px;padding:24px 26px 24px 88px;
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .prob::after{
@@ -186,17 +186,7 @@
     transform:rotate(45deg);
   }
   .prob:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-  .prob .pn{
-    position:absolute;left:24px;top:24px;font-family:"Anton";color:var(--sizzle);
-    font-size:1.28rem;line-height:1;background:#fff;border:1px solid rgba(230,78,27,.18);
-    width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 10px 24px -18px rgba(36,27,20,.45);
-  }
-  .prob .pn::before{
-    content:"悩み";position:absolute;top:-1.6em;left:50%;transform:translateX(-50%);
-    font-family:"Noto Sans JP";font-size:.58rem;font-weight:700;color:var(--ink-faint);white-space:nowrap;
-  }
-  .prob h3{font-size:1.08rem;font-weight:900;margin:0;line-height:1.48;}
+  .prob h3{font-size:1.42rem;font-weight:900;margin:0;line-height:1.4;color:var(--sizzle);}
   .prob p{
     font-size:.88rem;color:var(--ink-soft);margin:.6em 0 0;line-height:1.75;
     padding-left:.85em;border-left:3px solid rgba(230,78,27,.2);
@@ -211,12 +201,20 @@
   .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:8px;}
   .ba .frame{aspect-ratio:5/4;border-color:rgba(255,255,255,.12);box-shadow:none;}
   .ba .tag{
-    position:absolute;left:14px;top:14px;z-index:3;font-weight:700;font-size:.74rem;letter-spacing:.08em;
-    padding:.35em .8em;border-radius:999px;
+    position:absolute;left:14px;top:14px;z-index:3;font-weight:900;font-size:.86rem;letter-spacing:.05em;
+    padding:.42em .9em;border-radius:999px;
   }
   .ba .tag.before{background:rgba(255,255,255,.16);color:#fff;}
   .ba .tag.after{background:var(--sizzle);color:#fff;}
-  .ba .arrow{font-family:"Anton";color:var(--sizzle);font-size:2rem;text-align:center;}
+  .ba .arrow{
+    width:74px;height:2px;background:linear-gradient(90deg,rgba(230,78,27,.18),var(--sizzle));
+    border-radius:999px;position:relative;
+  }
+  .ba .arrow::after{
+    content:"";position:absolute;right:0;top:50%;width:13px;height:13px;
+    border-top:2px solid var(--sizzle);border-right:2px solid var(--sizzle);
+    transform:translateY(-50%) rotate(45deg);
+  }
   .solve-note{margin-top:28px;color:rgba(250,245,238,.7);font-size:.9rem;text-align:center;}
 
   /* ---------- strengths ---------- */
@@ -230,7 +228,7 @@
   .str-card .knum{position:absolute;top:14px;left:16px;font-family:"Anton";font-size:1.5rem;color:#fff;
     background:rgba(36,27,20,.55);width:1.9em;height:1.9em;display:flex;align-items:center;justify-content:center;border-radius:50%;z-index:2;}
   .str-card .body{padding:24px 24px 30px;}
-  .str-card h3{font-size:1.18rem;font-weight:900;margin:0 0 .5em;line-height:1.5;}
+  .str-card h3{font-size:1.5rem;font-weight:900;margin:0 0 .5em;line-height:1.38;color:var(--sizzle);}
   .str-card p{font-size:.92rem;color:var(--ink-soft);margin:0;}
 
   /* ---------- track record band ---------- */
@@ -256,9 +254,17 @@
   /* ---------- process ---------- */
   .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;}
   .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 20px;position:relative;min-height:170px;}
-  .step:not(:last-child)::after{content:"→";position:absolute;right:-18px;top:28px;color:var(--sizzle);font-family:"Anton";font-size:1.3rem;z-index:2;}
+  .step:not(:last-child)::after{
+    content:"";position:absolute;right:-25px;top:36px;width:34px;height:2px;
+    background:linear-gradient(90deg,rgba(230,78,27,.2),var(--sizzle));border-radius:999px;z-index:2;
+  }
+  .step:not(:last-child)::before{
+    content:"";position:absolute;right:-26px;top:31px;width:10px;height:10px;
+    border-top:2px solid var(--sizzle);border-right:2px solid var(--sizzle);
+    transform:rotate(45deg);z-index:3;
+  }
   .step .sn{font-family:"Anton";font-size:1rem;color:#fff;background:var(--ink);width:2.4em;height:2.4em;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;}
-  .step h3{font-size:1.05rem;font-weight:900;margin:.85em 0 .4em;}
+  .step h3{font-size:1.36rem;font-weight:900;margin:.68em 0 .4em;line-height:1.38;color:var(--sizzle);}
   .step p{font-size:.86rem;color:var(--ink-soft);margin:0;line-height:1.75;}
   .step .badge{display:inline-block;margin-top:.6em;font-size:.7rem;font-weight:700;color:var(--sizzle);background:rgba(230,78,27,.1);padding:.25em .7em;border-radius:999px;}
 
@@ -267,7 +273,8 @@
   .plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;position:relative;}
   .plan.feat{border:2px solid var(--sizzle);box-shadow:var(--shadow);}
   .plan.feat .ribbon{position:absolute;top:-13px;left:28px;background:var(--sizzle);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.35em .9em;border-radius:999px;}
-  .plan .pname{font-size:1.02rem;font-weight:900;margin-bottom:.2em;}
+  .plan .pname{font-size:1.34rem;font-weight:900;margin-bottom:.3em;line-height:1.38;}
+  .plan.feat .pname{color:var(--sizzle);}
   .plan .psub{font-size:.8rem;color:var(--ink-faint);margin-bottom:1.1em;}
   .plan .pprice{display:flex;align-items:baseline;gap:.15em;margin-bottom:.2em;}
   .plan .pprice .yen{font-weight:900;font-size:1.1rem;}
@@ -342,7 +349,7 @@
     .hero h1{font-size:clamp(2.3rem,7vw,3.6rem);}
     .prob-grid,.str,.stats-grid,.voices,.flow,.price-grid{grid-template-columns:repeat(2,1fr);}
     .gal-row{grid-template-columns:repeat(4,1fr);}
-    .step:not(:last-child)::after{display:none;}
+    .step:not(:last-child)::before,.step:not(:last-child)::after{display:none;}
   }
   @media(max-width:680px){
     .wrap{padding:0 18px;}
@@ -357,7 +364,7 @@
     .hamb{display:flex;}
     .prob-grid,.str,.stats-grid,.voices,.flow,.price-grid,.access-grid,.ba{grid-template-columns:1fr;}
     .ba{gap:14px;}
-    .ba .arrow{transform:rotate(90deg);}
+    .ba .arrow{width:54px;margin:0 auto;transform:rotate(90deg);}
     .gal-row{grid-template-columns:repeat(3,1fr);}
     .hero-cta .btn,.final-cta .btn{flex:1;justify-content:center;}
     .hero .frame{aspect-ratio:4/3;border-radius:14px;}
@@ -392,14 +399,15 @@
     .stamp small{font-size:.52rem;}
     .section-head h2{font-size:clamp(1.45rem,6.2vw,1.85rem);line-height:1.38;}
     .section-head p{font-size:.92rem;line-height:1.85;}
-    .prob{padding:22px 20px 22px 76px;}
-    .prob .pn{left:20px;top:24px;width:38px;height:38px;font-size:1.16rem;}
+    .prob{padding:22px 20px;}
     .prob::after{left:26px;}
-    .prob h3,.str-card h3{font-size:1rem;line-height:1.55;}
+    .prob h3{font-size:1.3rem;line-height:1.4;}
+    .str-card h3{font-size:1.32rem;line-height:1.4;}
     .prob p{font-size:.84rem;line-height:1.7;}
     .voice .q{font-size:1.02rem;line-height:1.65;}
-    .step h3{font-size:1rem;}
-    .plan .pname{font-size:1rem;}
+    .step h3{font-size:1.28rem;}
+    .ba .tag{font-size:.78rem;left:12px;top:12px;max-width:calc(100% - 24px);line-height:1.45;}
+    .plan .pname{font-size:1.28rem;}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;}
@@ -445,8 +453,6 @@
         <a class="btn btn-ghost" href="#gallery">制作事例を見る</a>
       </div>
       <div class="chips">
-        <span class="chip">累計 <b>12,000</b> カット</span>
-        <span class="chip">取引 <b>300</b> 社</span>
         <span class="chip">1カットから対応</span>
         <span class="chip">オンライン立会 OK</span>
       </div>
@@ -469,10 +475,10 @@
       <p>商品の売上を左右する写真。しかし、理想の1枚を撮影するには<br>コストや手間の面で多くの課題が伴います。</p>
     </div>
     <div class="prob-grid">
-      <div class="prob reveal"><div class="pn">01</div><h3>自社撮影のクオリティ限界<br>美味しさが表現できない</h3><p>光の当て方やシズル感の演出など、<br>社内での撮影には限界がある。</p></div>
-      <div class="prob reveal"><div class="pn">02</div><h3>高額な外注コストの壁<br>スタジオ代や機材費の負担</h3><p>プロに頼むと見積もりが高くなり、<br>予算が合わず断念してしまう。</p></div>
-      <div class="prob reveal"><div class="pn">03</div><h3>大掛かりな撮影準備の手間<br>小道具や背景の手配が大変</h3><p>食器の用意や世界観づくりに、<br>膨大な時間と手間がかかる。</p></div>
-      <div class="prob reveal"><div class="pn">04</div><h3>売上につながる実感不足<br>綺麗なだけの「記録写真」</h3><p>商業写真の設計思想がないため、<br>写真を変更しても数字が動かない。</p></div>
+      <div class="prob reveal"><h3>自社撮影のクオリティ限界<br>美味しさが表現できない</h3><p>光の当て方やシズル感の演出など、<br>社内での撮影には限界がある。</p></div>
+      <div class="prob reveal"><h3>高額な外注コストの壁<br>スタジオ代や機材費の負担</h3><p>プロに頼むと見積もりが高くなり、<br>予算が合わず断念してしまう。</p></div>
+      <div class="prob reveal"><h3>大掛かりな撮影準備の手間<br>小道具や背景の手配が大変</h3><p>食器の用意や世界観づくりに、<br>膨大な時間と手間がかかる。</p></div>
+      <div class="prob reveal"><h3>売上につながる実感不足<br>綺麗なだけの「記録写真」</h3><p>商業写真の設計思想がないため、<br>写真を変更しても数字が動かない。</p></div>
     </div>
   </div>
 </section>
@@ -490,7 +496,7 @@
         <span class="tag before">Before / 自社での簡易撮影</span>
         <img class="photo-img" src="images/solution-workflow-natural.png" alt="食品撮影のためにカメラや資料を準備しているスタジオ風景">
       </div>
-      <div class="arrow">→</div>
+      <div class="arrow" aria-hidden="true"></div>
       <div class="frame">
         <span class="tag after">After / 当スタジオ（プロ撮影 × AI背景）</span>
         <img class="photo-img" src="images/hero-steak.png" alt="ステーキとグリル野菜を盛り付けた完成写真">
@@ -552,7 +558,7 @@
     </div>
     <div class="price-grid">
       <div class="plan reveal">
-        <div class="pname">切り抜き商品プラン（背景なし）</div>
+        <div class="pname">切り抜き商品プラン<br>（背景なし）</div>
         <div class="psub">シンプルな商品単体カット</div>
         <div class="pprice"><span class="yen">¥</span><span class="val">15,000</span><span class="tilde">〜</span></div>
         <div class="pcut">／ 1カット（jpg納品）</div>
@@ -653,7 +659,6 @@
       <div class="gtile"><img src="images/solution-workflow-natural.png" alt="撮影スタジオでの準備風景"></div>
       <div class="gtile"><img src="images/solution-workflow.png" alt="撮影ワークフローのイメージ"></div>
     </div>
-    <p class="solve-note" style="color:var(--ink-faint);">各ジャンルの撮影イメージを掲載しています。<br>Instagram連携の導線を置くのも効果的です。</p>
   </div>
 </section>
 
