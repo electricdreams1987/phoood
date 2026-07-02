@@ -174,16 +174,33 @@
   .center .eyebrow{justify-content:center;}
 
   /* ---------- problems ---------- */
-  .prob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;}
   .prob{
-    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 22px;
+    position:relative;background:linear-gradient(135deg,#fff 0%,#FFF7F1 100%);
+    border:1px solid var(--line);border-radius:16px;padding:24px 26px 24px 88px;
     transition:transform .25s ease, box-shadow .25s ease;
   }
+  .prob::after{
+    content:"";position:absolute;left:28px;bottom:-9px;width:18px;height:18px;
+    background:#FFF7F1;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transform:rotate(45deg);
+  }
   .prob:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-  .prob .pn{font-family:"Anton";color:var(--paper-2);font-size:2.6rem;line-height:1;
-    -webkit-text-stroke:1.5px var(--line-strong);}
-  .prob h3{font-size:1.02rem;font-weight:700;margin:.5em 0 .3em;line-height:1.5;}
-  .prob p{font-size:.86rem;color:var(--ink-soft);margin:0;}
+  .prob .pn{
+    position:absolute;left:24px;top:24px;font-family:"Anton";color:var(--sizzle);
+    font-size:1.28rem;line-height:1;background:#fff;border:1px solid rgba(230,78,27,.18);
+    width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -18px rgba(36,27,20,.45);
+  }
+  .prob .pn::before{
+    content:"悩み";position:absolute;top:-1.6em;left:50%;transform:translateX(-50%);
+    font-family:"Noto Sans JP";font-size:.58rem;font-weight:700;color:var(--ink-faint);white-space:nowrap;
+  }
+  .prob h3{font-size:1.08rem;font-weight:900;margin:0;line-height:1.48;}
+  .prob p{
+    font-size:.88rem;color:var(--ink-soft);margin:.6em 0 0;line-height:1.75;
+    padding-left:.85em;border-left:3px solid rgba(230,78,27,.2);
+  }
 
   /* ---------- solution / before-after ---------- */
   .solve{background:var(--ink);color:var(--paper);}
@@ -237,12 +254,12 @@
   .voice .who span{font-size:.76rem;color:var(--ink-faint);}
 
   /* ---------- process ---------- */
-  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
-  .step{padding:0 22px;position:relative;}
-  .step:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:6px;color:var(--sizzle);font-family:"Anton";font-size:1.4rem;}
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 20px;position:relative;min-height:170px;}
+  .step:not(:last-child)::after{content:"→";position:absolute;right:-18px;top:28px;color:var(--sizzle);font-family:"Anton";font-size:1.3rem;z-index:2;}
   .step .sn{font-family:"Anton";font-size:1rem;color:#fff;background:var(--ink);width:2.4em;height:2.4em;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;}
-  .step h3{font-size:1.05rem;font-weight:900;margin:.7em 0 .3em;}
-  .step p{font-size:.86rem;color:var(--ink-soft);margin:0;}
+  .step h3{font-size:1.05rem;font-weight:900;margin:.85em 0 .4em;}
+  .step p{font-size:.86rem;color:var(--ink-soft);margin:0;line-height:1.75;}
   .step .badge{display:inline-block;margin-top:.6em;font-size:.7rem;font-weight:700;color:var(--sizzle);background:rgba(230,78,27,.1);padding:.25em .7em;border-radius:999px;}
 
   /* ---------- pricing ---------- */
@@ -257,6 +274,7 @@
   .plan .pprice .val{font-family:"Anton";font-size:2.9rem;color:var(--ink);line-height:1;}
   .plan .pprice .tilde{font-weight:700;color:var(--ink-soft);}
   .plan .pcut{font-size:.82rem;color:var(--ink-soft);margin-bottom:1.2em;}
+  .plan .pdesc{font-size:.86rem;color:var(--ink-soft);line-height:1.75;margin:0 0 1.4em;}
   .plan ul{list-style:none;padding:0;margin:0 0 1.6em;border-top:1px solid var(--line);}
   .plan li{font-size:.88rem;padding:.7em 0 .7em 1.6em;border-bottom:1px solid var(--line);position:relative;color:var(--ink-soft);}
   .plan li::before{content:"✓";position:absolute;left:0;color:var(--sizzle);font-weight:900;}
@@ -354,7 +372,7 @@
       color:var(--ink);
     }
     .hero-copy .eyebrow{color:var(--sizzle);}
-    .hero h1{font-size:clamp(1.78rem,7.8vw,2.12rem);line-height:1.2;margin:.45em 0 .65em;text-shadow:none;}
+    .hero h1{font-size:clamp(1.62rem,6.9vw,2rem);line-height:1.2;margin:.45em 0 .65em;text-shadow:none;}
     .hero p.lead{font-size:.92rem;line-height:1.85;color:var(--ink-soft);margin:1.45em 0 1.35em;max-width:100%;text-shadow:none;}
     .hero-cta{gap:10px;margin-bottom:1.1em;}
     .hero-cta .btn{padding:.78em 1.1em;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);}
@@ -374,7 +392,11 @@
     .stamp small{font-size:.52rem;}
     .section-head h2{font-size:clamp(1.45rem,6.2vw,1.85rem);line-height:1.38;}
     .section-head p{font-size:.92rem;line-height:1.85;}
+    .prob{padding:22px 20px 22px 76px;}
+    .prob .pn{left:20px;top:24px;width:38px;height:38px;font-size:1.16rem;}
+    .prob::after{left:26px;}
     .prob h3,.str-card h3{font-size:1rem;line-height:1.55;}
+    .prob p{font-size:.84rem;line-height:1.7;}
     .voice .q{font-size:1.02rem;line-height:1.65;}
     .step h3{font-size:1rem;}
     .plan .pname{font-size:1rem;}
@@ -394,7 +416,6 @@
     <a href="#top" class="logo" aria-label="SIZZLE STUDIO">SIZZLE<span class="dot">.</span><small>FOOD PHOTO</small></a>
     <nav class="nav-links" id="navlinks">
       <a class="link" href="#strength">強み</a>
-      <a class="link" href="#voice">お客様の声</a>
       <a class="link" href="#flow">撮影の流れ</a>
       <a class="link" href="#price">料金</a>
       <a class="link" href="#gallery">作例</a>
@@ -411,7 +432,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Food Photography Studio</span>
-      <h1><span class="hl">売り上げ</span>につながる、<br>美味しそうな1枚</h1>
+      <h1><span class="keep">プロの撮影 × AI背景で、</span><br><span class="hl">“売れる写真”</span>を<br>高品質・低価格で</h1>
       <div class="hero-mobile-visual">
         <div class="frame">
           <img class="photo-img" src="images/hero-steak-glam.png" alt="焼きたてのステーキとグリル野菜の料理写真">
@@ -421,7 +442,7 @@
       <p class="lead">通販・カタログ・パッケージ・ECで「選ばれる」食品写真を、<br>企画から撮影・納品までワンストップで。<br>食品に特化したシズル演出で、<br>ただの記録写真を“売れる写真”に変えます。</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#contact">無料で見積り・相談する<span class="arw">→</span></a>
-        <a class="btn btn-ghost" href="#gallery">撮影実績を見る</a>
+        <a class="btn btn-ghost" href="#gallery">制作事例を見る</a>
       </div>
       <div class="chips">
         <span class="chip">累計 <b>12,000</b> カット</span>
@@ -444,14 +465,14 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Problem</span>
-      <h2>その写真、<br>おいしさが伝わっていますか？</h2>
-      <p>食品の売上は「写真」で大きく変わります。<br>こんなお悩み、ありませんか。</p>
+      <h2>理想の食品写真、<br>予算や手間で諦めていませんか？</h2>
+      <p>商品の売上を左右する写真。しかし、理想の1枚を撮影するには<br>コストや手間の面で多くの課題が伴います。</p>
     </div>
     <div class="prob-grid">
-      <div class="prob reveal"><div class="pn">01</div><h3>自社で撮ると、<br>なぜか美味しそうに見えない</h3><p>光や構図、シズルの出し方で<br>仕上がりは大きく変わります。</p></div>
-      <div class="prob reveal"><div class="pn">02</div><h3>写真を変えても、<br>売上につながる実感がない</h3><p>「記録写真」と「売れる写真」は<br>設計思想が違います。</p></div>
-      <div class="prob reveal"><div class="pn">03</div><h3>撮影費用が不透明で、<br>予算が読めない</h3><p>スタジオ代・食器代・人件費…。<br>内訳が見えにくい。</p></div>
-      <div class="prob reveal"><div class="pn">04</div><h3>食器・小道具・場所の準備が大変</h3><p>調理からスタイリングまで、<br>手間とコストがかさむ。</p></div>
+      <div class="prob reveal"><div class="pn">01</div><h3>自社撮影のクオリティ限界<br>美味しさが表現できない</h3><p>光の当て方やシズル感の演出など、<br>社内での撮影には限界がある。</p></div>
+      <div class="prob reveal"><div class="pn">02</div><h3>高額な外注コストの壁<br>スタジオ代や機材費の負担</h3><p>プロに頼むと見積もりが高くなり、<br>予算が合わず断念してしまう。</p></div>
+      <div class="prob reveal"><div class="pn">03</div><h3>大掛かりな撮影準備の手間<br>小道具や背景の手配が大変</h3><p>食器の用意や世界観づくりに、<br>膨大な時間と手間がかかる。</p></div>
+      <div class="prob reveal"><div class="pn">04</div><h3>売上につながる実感不足<br>綺麗なだけの「記録写真」</h3><p>商業写真の設計思想がないため、<br>写真を変更しても数字が動かない。</p></div>
     </div>
   </div>
 </section>
@@ -461,21 +482,21 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Why we sell</span>
-      <h2>「売れる見せ方」には、<br>理由があります。</h2>
-      <p>湯気・照り・みずみずしさ、そして構図と光。<br>食欲を動かす要素を一枚に設計します。</p>
+      <h2>写真を変えるだけで、ここまで変わる。</h2>
+      <p>社内環境での簡易的な撮影と、当スタジオによる「プロ撮影×AI背景合成」の比較です。<br>商品自体の美味しさを引き出し、最適な世界観で包み込むことで、購買意欲を動かします。</p>
     </div>
     <div class="ba">
       <div class="frame">
-        <span class="tag before">Planning / 撮影設計</span>
+        <span class="tag before">Before / 自社での簡易撮影</span>
         <img class="photo-img" src="images/solution-workflow-natural.png" alt="食品撮影のためにカメラや資料を準備しているスタジオ風景">
       </div>
       <div class="arrow">→</div>
       <div class="frame">
-        <span class="tag after">After / プロ撮影</span>
+        <span class="tag after">After / 当スタジオ（プロ撮影 × AI背景）</span>
         <img class="photo-img" src="images/hero-steak.png" alt="ステーキとグリル野菜を盛り付けた完成写真">
       </div>
     </div>
-    <p class="solve-note">企画・スタイリング・撮影・納品まで、<br>用途に合わせて一枚ずつ設計します。</p>
+    <p class="solve-note">ただの記録写真から、食欲を刺激して売上をつくる商業写真へ。<br>確かな撮影技術と最新AIの掛け合わせが、この圧倒的な差を生み出します。</p>
   </div>
 </section>
 
@@ -485,68 +506,22 @@
     <div class="section-head center">
       <span class="eyebrow">Our Strength</span>
       <h2>選ばれる、3つの理由</h2>
-      <p>長年の撮影力に、<br>食品特化のノウハウを掛け合わせています。</p>
+      <p>プロの撮影技術とAI背景生成を組み合わせ、<br>品質と価格の両立を実現します。</p>
     </div>
     <div class="str">
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/gallery-meat.png" alt="肉料理のフード写真"><span class="knum">1</span></div>
-        <div class="body"><h3>シズルを操る、<br>フード専門のディレクション</h3><p>湯気・照り・箸上げ。<br>食欲を動かす演出を、<br>盛り付けからスタイリングまで一貫して設計します。</p></div>
+        <div class="body"><h3>食品そのものは、<br>プロが丁寧に撮影</h3><p>光・構図・質感を見極め、<br>湯気や照りまで伝わる<br>“おいしそう”な一枚に仕上げます。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/solution-workflow.png" alt="食品撮影の制作フローを表すスタジオ風景"><span class="knum">2</span></div>
-        <div class="body"><h3>撮影から仕上げまで、<br>ワンストップ</h3><p>〔御社の強み〕の撮影実績に、<br>フード特化の体制をプラス。<br>企画・調理・撮影・レタッチまで一気通貫で対応します。</p></div>
+        <div class="body"><h3>背景はAIで生成し、<br>用途に合わせて最適化</h3><p>商品イメージや掲載媒体に合わせて、<br>世界観のある背景を制作。<br>撮影後の展開もしやすくなります。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/solution-deliverables.png" alt="食品写真の納品物を確認している様子"><span class="knum">3</span></div>
-        <div class="body"><h3>1カット単位・明朗会計</h3><p>必要な分だけ、込み込み価格で。<br>費用が分かりやすく、<br>はじめての方でも安心してご依頼いただけます。</p></div>
+        <div class="body"><h3>建て込みを抑えて、<br>高品質・低価格を実現</h3><p>大掛かりな背景セットを組まず、<br>プロ撮影とAI背景生成で<br>コストを抑えた写真制作が可能です。</p></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ TRACK RECORD ============ -->
-<section class="section stats" id="stats">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow">Track Record</span>
-      <h2>実績が、品質の証明です。</h2>
-    </div>
-    <div class="stats-grid">
-      <div class="stat reveal"><div><span class="num">12,000</span><span class="unit">カット</span></div><div class="lbl">累計撮影カット数</div></div>
-      <div class="stat reveal"><div><span class="num">300</span><span class="unit">社</span></div><div class="lbl">取引企業数</div></div>
-      <div class="stat reveal"><div><span class="num">98</span><span class="unit">%</span></div><div class="lbl">リピート率</div></div>
-      <div class="stat reveal"><div><span class="num">15</span><span class="unit">ジャンル</span></div><div class="lbl">対応カテゴリ</div></div>
-    </div>
-    <p class="clients">
-      <b>主な取引先（一例）：</b><br>
-      〔取引先A〕、〔取引先B〕、〔取引先C〕、〔取引先D〕、〔取引先E〕、〔取引先F〕、<br>
-      〔取引先G〕、〔取引先H〕 他多数（※順不同・敬称略）
-    </p>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section" id="voice">
-  <div class="wrap">
-    <div class="section-head center">
-      <h2>お客様の声</h2>
-      <p>「写真を変えたら、数字が動いた」。<br>実際の成果をご紹介します。</p>
-    </div>
-    <div class="voices">
-      <div class="voice reveal">
-        <p class="q">パッケージをリニューアルしたら、売上が<em>1.5倍</em >に。</p>
-        <p>「美味しそうだったので選んだ」というお客様の声も増えました。<br>撮り直しの価値を実感しています。</p>
-      </div>
-      <div class="voice reveal">
-        <p class="q">EC掲載後、<em>レビュー評価とCVRが改善</em>。</p>
-        <p>商品ページの写真を差し替えただけで、購入率が目に見えて上がりました。<br>費用以上の効果でした。</p>
-      </div>
-      <div class="voice reveal">
-        <p class="q">カタログ撮影を<em>一括でお任せ</em>でき、助かりました。</p>
-        <p>スピードと仕上がりに満足しています。<br>毎シーズン、継続してお願いしています。</p>
-      </div>
-    </div>
-    <p class="solve-note" style="color:var(--ink-faint);">※ 上記はレイアウト確認用の掲載例です。<br>実際のお客様の声・社名に差し替えてください。</p>
   </div>
 </section>
 
@@ -577,46 +552,51 @@
     </div>
     <div class="price-grid">
       <div class="plan reveal">
-        <div class="pname">商品形態撮影</div>
+        <div class="pname">切り抜き商品プラン（背景なし）</div>
         <div class="psub">シンプルな商品単体カット</div>
         <div class="pprice"><span class="yen">¥</span><span class="val">15,000</span><span class="tilde">〜</span></div>
         <div class="pcut">／ 1カット（jpg納品）</div>
+        <p class="pdesc">商品そのものの魅力を引き出す、使い勝手の良いベーシックなプラン。ECサイトやカタログの商品一覧、メニュー表などに最適です。</p>
         <ul>
-          <li>商品をそのまま撮影</li>
-          <li>白背景・簡易演出</li>
-          <li>EC・一覧用に最適</li>
+          <li>プロカメラマンによる白背景撮影</li>
+          <li>商品の色味とシズル感を正確に再現</li>
+          <li>ECやメニュー表にそのまま使える高品質データ</li>
+          <li>最もスピーディーな撮影・納品が可能</li>
         </ul>
         <a class="btn btn-ghost" href="#contact">このプランで相談</a>
       </div>
       <div class="plan feat reveal">
         <span class="ribbon">一番人気</span>
-        <div class="pname">盛り付けイメージ撮影</div>
-        <div class="psub">シズル感を演出した訴求カット</div>
+        <div class="pname">AI背景合成プラン</div>
+        <div class="psub">プロ撮影とAI生成による驚きの高コスパ</div>
         <div class="pprice"><span class="yen">¥</span><span class="val">35,000</span><span class="tilde">〜</span></div>
         <div class="pcut">／ 1カット（jpg納品）</div>
+        <p class="pdesc">当スタジオ最大の強み。プロのシズル感撮影とAIによる背景生成を掛け合わせ、スタジオ代や高額なセット代をかけずに理想のシチュエーションを低価格で実現します。</p>
         <ul>
-          <li><b>カメラマン代</b>込み</li>
-          <li><b>フードコーディネート代</b>込み</li>
-          <li><b>スタジオ代・備品代</b>込み</li>
-          <li>料理アレンジ・シズル演出（湯気・箸上げ等）込み</li>
+          <li>プロによる食品撮影とAI背景の高品質な合成</li>
+          <li>キッチンやカフェなど無限のシチュエーション指定が可能</li>
+          <li>高額なスタジオ代や大掛かりな備品代が不要</li>
+          <li>SNSやメインビジュアルに最適な「売れる」一枚をご提供</li>
         </ul>
         <a class="btn btn-primary" href="#contact">このプランで相談</a>
       </div>
       <div class="plan reveal">
-        <div class="pname">パッケージ撮影</div>
-        <div class="psub">商品パッケージ用の料理撮影</div>
+        <div class="pname">フードコーディネータープラン</div>
+        <div class="psub">本格的な調理・スタイリング撮影</div>
         <div class="pprice"><span class="yen">¥</span><span class="val">57,000</span><span class="tilde">〜</span></div>
         <div class="pcut">／ 1カット（tiff納品）</div>
+        <p class="pdesc">実際の食器や小道具を使用した緻密な空間演出や、独自の調理・レシピ開発が必要な方向けのハイエンドな撮影プランです。</p>
         <ul>
-          <li>デザインデータに合わせて撮影</li>
-          <li>高解像度（印刷対応）</li>
-          <li>コーディネート・備品込み</li>
+          <li>専属フードコーディネーターによる調理とスタイリング</li>
+          <li>実物の背景材や備品を用いたリアルな世界観の構築</li>
+          <li>パッケージや大規模プロモーション用の高解像度撮影</li>
+          <li>立会い（オンライン・実地）によるリアルタイムな画角調整</li>
         </ul>
         <a class="btn btn-ghost" href="#contact">このプランで相談</a>
       </div>
     </div>
     <p class="price-notes">
-      ※ 金額は設定例です。御社の体制に合わせて調整してください。&nbsp; ※ 食材を弊社で用意する場合、食材費は別途。&nbsp; ※ 食器レンタルが必要な場合、別途費用がかかります。&nbsp; ※ レシピ作成・デザイン制作も併せてご相談いただけます。&nbsp; ※ 価格はすべて税込／税抜の表記方針を統一してください。
+      ※ 金額は設定例です。御社の体制に合わせて調整してください。&nbsp; ※ 食材を弊社で用意する場合、食材費は別途。&nbsp; ※ 食器レンタルが必要な場合、別途費用がかかります。&nbsp; ※ レシピ作成・デザイン制作も併せてご相談いただけます。&nbsp; ※ 価格はすべて税込／税抜の表記方針を統一してください。<br><span style="font-size:0.85em;">※ 基本プランはプロ撮影+AI背景生成となりますが、フードコーディネーターを配した従来型のスタジオ建て込み撮影(調理・スタイリング)も可能です。用途に合わせてご相談ください。</span>
     </p>
   </div>
 </section>
@@ -626,8 +606,8 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Cost Comparison</span>
-      <h2>「費用が分かりやすい」と好評です</h2>
-      <p>盛り付けイメージ写真 ×3カットを、<br>半日で撮影した場合の比較（一例）。</p>
+      <h2>わかりやすい料金</h2>
+      <p>スタジオ代や備品代、コーディネート代など、一般的な撮影で追加されがちな費用をすべて含んだコミコミ価格です。<br>見積もり段階から予算がブレない、当スタジオと他社との費用比較をご覧ください。<br><span>（※盛り付けイメージ写真 3カットを半日で撮影した場合の比較一例）</span></p>
     </div>
     <div class="cmp-wrap">
       <table class="cmp">
@@ -652,44 +632,26 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Gallery</span>
-      <h2>撮影実績</h2>
+      <h2>制作事例</h2>
       <p>テーマに合わせて、プロが多彩な見せ方をご提案します。<br>あらゆるジャンルに対応。</p>
     </div>
 
-    <div class="gal-cat">
-      <h3>お弁当 <span class="tagjp">BENTO</span></h3>
-      <div class="gal-row">
-        <div class="gtile"><img src="images/gallery-bento.png" alt="お弁当の撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-deli.png" alt="惣菜の撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-seasonal.png" alt="季節料理の撮影実績"></div>
-        <div class="gtile"><img src="images/solution-deliverables.png" alt="納品イメージの撮影実績"></div>
-        <div class="gtile"><img src="images/hero-food-photo.png" alt="料理写真の撮影実績"></div>
-        <div class="gtile"><img src="images/hero-food-photo-v2.png" alt="食品写真の撮影実績"></div>
-      </div>
-    </div>
-
-    <div class="gal-cat">
-      <h3>麺・主食 <span class="tagjp">NOODLE</span></h3>
-      <div class="gal-row">
-        <div class="gtile"><img src="images/gallery-noodles.png" alt="麺料理の撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-deli.png" alt="主食メニューの撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-seasonal.png" alt="季節メニューの撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-bento.png" alt="弁当メニューの撮影実績"></div>
-        <div class="gtile"><img src="images/solution-workflow-natural.png" alt="撮影スタジオでの準備風景"></div>
-        <div class="gtile"><img src="images/solution-workflow.png" alt="撮影ワークフローのイメージ"></div>
-      </div>
-    </div>
-
-    <div class="gal-cat">
-      <h3>精肉・鮮魚・ドリンク <span class="tagjp">VARIETY</span></h3>
-      <div class="gal-row">
-        <div class="gtile"><img src="images/gallery-meat.png" alt="精肉料理の撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-seafood.png" alt="鮮魚料理の撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-drink.png" alt="ドリンクの撮影実績"></div>
-        <div class="gtile"><img src="images/gallery-sweets.png" alt="スイーツの撮影実績"></div>
-        <div class="gtile"><img src="images/hero-steak.png" alt="ステーキ料理の撮影実績"></div>
-        <div class="gtile"><img src="images/hero-steak-glam.png" alt="華やかなステーキ料理の撮影実績"></div>
-      </div>
+    <div class="gal-row">
+      <div class="gtile"><img src="images/gallery-bento.png" alt="お弁当の制作事例"></div>
+      <div class="gtile"><img src="images/gallery-deli.png" alt="惣菜の制作事例"></div>
+      <div class="gtile"><img src="images/gallery-noodles.png" alt="麺料理の制作事例"></div>
+      <div class="gtile"><img src="images/gallery-meat.png" alt="精肉料理の制作事例"></div>
+      <div class="gtile"><img src="images/gallery-seafood.png" alt="鮮魚料理の制作事例"></div>
+      <div class="gtile"><img src="images/gallery-drink.png" alt="ドリンクの制作事例"></div>
+      <div class="gtile"><img src="images/gallery-sweets.png" alt="スイーツの制作事例"></div>
+      <div class="gtile"><img src="images/gallery-seasonal.png" alt="季節料理の制作事例"></div>
+      <div class="gtile"><img src="images/hero-food-photo.png" alt="料理写真の制作事例"></div>
+      <div class="gtile"><img src="images/hero-food-photo-v2.png" alt="食品写真の制作事例"></div>
+      <div class="gtile"><img src="images/hero-steak.png" alt="ステーキ料理の制作事例"></div>
+      <div class="gtile"><img src="images/hero-steak-glam.png" alt="華やかなステーキ料理の制作事例"></div>
+      <div class="gtile"><img src="images/solution-deliverables.png" alt="納品イメージの制作事例"></div>
+      <div class="gtile"><img src="images/solution-workflow-natural.png" alt="撮影スタジオでの準備風景"></div>
+      <div class="gtile"><img src="images/solution-workflow.png" alt="撮影ワークフローのイメージ"></div>
     </div>
     <p class="solve-note" style="color:var(--ink-faint);">各ジャンルの撮影イメージを掲載しています。<br>Instagram連携の導線を置くのも効果的です。</p>
   </div>
