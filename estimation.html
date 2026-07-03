@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見積もりシミュレーション | SIZZLE FOOD PHOTO</title>
+<meta name="description" content="食品写真撮影の見積もりシミュレーションを自動計算し、PDFでダウンロードできます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF5EE;
+    --paper-2:#F4E8D8;
+    --card:#fff;
+    --ink:#241B14;
+    --ink-soft:#6E5F52;
+    --ink-faint:#9B8A7B;
+    --sizzle:#E64E1B;
+    --blue:#1F6F8B;
+    --line:rgba(36,27,20,.12);
+    --line-strong:rgba(36,27,20,.22);
+    --shadow:0 18px 40px -24px rgba(36,27,20,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans JP",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.75;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{width:min(1160px,100%);margin:0 auto;padding:0 24px}
+  header{
+    position:sticky;top:0;z-index:20;background:rgba(250,245,238,.9);
+    border-bottom:1px solid var(--line);backdrop-filter:blur(10px);
+  }
+  .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .back{
+    display:inline-flex;align-items:center;gap:.45em;color:var(--ink-soft);
+    font-size:.92rem;font-weight:700;transition:color .2s ease;
+  }
+  .back:hover{color:var(--sizzle)}
+  .brand{
+    font-family:"Anton",sans-serif;letter-spacing:.05em;font-size:1.42rem;
+  }
+  .brand span{color:var(--sizzle)}
+  main{padding:54px 0 72px}
+  .hero{margin-bottom:34px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.55em;color:var(--sizzle);
+    font-size:.78rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
+  }
+  .eyebrow::before{content:"";display:inline-block;width:24px;height:2px;background:var(--sizzle)}
+  h1{
+    margin:.35em 0 .35em;font-size:clamp(2rem,4vw,3.4rem);line-height:1.22;
+    font-weight:900;letter-spacing:.01em;
+  }
+  .hero p{margin:0;color:var(--ink-soft);font-size:1rem}
+  .grid{
+    display:grid;grid-template-columns:minmax(320px,.92fr) minmax(420px,1.08fr);
+    gap:26px;align-items:start;
+  }
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    box-shadow:var(--shadow);padding:28px;
+  }
+  .panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:22px}
+  .panel h2{margin:0;font-size:1.24rem;line-height:1.45;font-weight:900}
+  .panel-num{
+    font-family:"Anton",sans-serif;color:var(--sizzle);font-size:1.05rem;
+    letter-spacing:.05em;
+  }
+  .plan-input{
+    padding:18px 0;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:1fr 132px;gap:16px;align-items:start;
+  }
+  .plan-input:last-of-type{border-bottom:1px solid var(--line)}
+  .plan-title{font-weight:900;line-height:1.5}
+  .plan-price{color:var(--ink-soft);font-size:.84rem;margin-top:.15em}
+  label{display:block}
+  input[type="number"]{
+    width:100%;height:46px;border:1px solid var(--line-strong);border-radius:10px;
+    padding:0 12px;background:#fff;color:var(--ink);font-size:1rem;font-weight:700;
+    text-align:right;
+  }
+  input[type="number"]:focus{outline:2px solid rgba(230,78,27,.22);border-color:var(--sizzle)}
+  .company-field{
+    padding:0 0 20px;margin-bottom:2px;border-bottom:1px solid var(--line);
+  }
+  .company-field label{font-weight:900;margin-bottom:8px}
+  .company-field input{
+    width:100%;height:48px;border:1px solid var(--line-strong);border-radius:10px;
+    padding:0 14px;background:#fff;color:var(--ink);font-size:1rem;font-weight:700;
+  }
+  .company-field input:focus{outline:2px solid rgba(230,78,27,.22);border-color:var(--sizzle)}
+  .unit{display:flex;align-items:center;gap:8px}
+  .unit span{font-size:.86rem;color:var(--ink-soft);font-weight:700}
+  .warning{
+    display:none;grid-column:1/-1;margin:-8px 0 0;color:#C7342D;
+    font-size:.82rem;font-weight:700;line-height:1.55;
+  }
+  .warning.show{display:block}
+  .hint{margin:18px 0 0;color:var(--ink-faint);font-size:.82rem}
+  .preview-tools{display:flex;justify-content:flex-end;margin:0 0 16px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;
+    padding:.88em 1.3em;background:var(--sizzle);color:#fff;font-weight:900;
+    font-size:.9rem;cursor:pointer;box-shadow:0 12px 26px -14px rgba(230,78,27,.75);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(230,78,27,.9)}
+  .estimate-doc{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px;
+    color:var(--ink);
+  }
+  .doc-top{
+    display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
+    border-bottom:3px solid var(--ink);padding-bottom:20px;margin-bottom:22px;
+  }
+  .doc-title{margin:0;font-size:1.8rem;font-weight:900;letter-spacing:.08em}
+  .doc-brand{text-align:right}
+  .doc-brand b{display:block;font-family:"Anton",sans-serif;font-size:1.25rem;letter-spacing:.06em}
+  .doc-brand span{display:block;color:var(--ink-soft);font-size:.78rem;margin-top:.25em}
+  .doc-meta{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;margin-bottom:22px;
+    color:var(--ink-soft);font-size:.9rem;
+  }
+  .doc-meta b{color:var(--ink)}
+  .doc-meta .meta-company{grid-column:1/-1;font-size:1rem}
+  #estimate-company{display:inline;overflow-wrap:anywhere;color:var(--ink)}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:13px 12px;border-bottom:1px solid var(--line);font-size:.9rem}
+  th{background:var(--paper);color:var(--ink-soft);font-weight:900;text-align:left}
+  td.qty,td.price{text-align:right;white-space:nowrap}
+  .placeholder td{text-align:center;color:var(--ink-faint);padding:30px 12px}
+  .totals{margin-top:18px;margin-left:auto;width:min(360px,100%)}
+  .total-row{display:flex;justify-content:space-between;gap:20px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .total-row.grand{
+    margin-top:8px;padding:14px 16px;border:0;border-radius:12px;
+    background:var(--ink);color:#fff;font-weight:900;font-size:1.08rem;
+  }
+  .doc-note{margin:22px 0 0;color:var(--ink-faint);font-size:.78rem;line-height:1.8}
+  .doc-footer{
+    margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+    color:var(--ink-faint);font-size:.72rem;line-height:1.7;
+  }
+  .accent{color:var(--sizzle)}
+
+  @media(max-width:900px){
+    main{padding:38px 0 56px}
+    .grid{grid-template-columns:1fr}
+    .panel{padding:22px}
+    .estimate-doc{padding:24px}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 18px}
+    .nav{height:66px}
+    .brand{font-size:1.15rem}
+    .back{font-size:.84rem}
+    .plan-input{grid-template-columns:1fr;gap:10px;padding:16px 0}
+    .unit{max-width:170px}
+    .panel-head{display:block}
+    .panel-num{display:block;margin-bottom:.25em}
+    .preview-tools{justify-content:stretch}
+    .btn{width:100%}
+    .doc-top{display:block}
+    .doc-brand{text-align:left;margin-top:10px}
+    .doc-title{font-size:1.45rem}
+    .doc-meta{grid-template-columns:1fr;font-size:.84rem}
+    th,td{padding:10px 8px;font-size:.82rem}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="back" href="index.html">← トップページに戻る</a>
+    <a class="brand" href="index.html">SIZZLE<span>.</span>FOOD PHOTO</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Estimate</span>
+      <h1>見積もりシミュレーション</h1>
+      <p>必要なカット数を入力すると、御見積書を自動で作成できます。</p>
+    </section>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="input-title">
+        <div class="panel-head">
+          <span class="panel-num">01</span>
+          <h2 id="input-title">カット数の入力フォーム</h2>
+        </div>
+
+        <div class="company-field">
+          <label for="company-name">御社名</label>
+          <input id="company-name" type="text" placeholder="例：株式会社〇〇">
+        </div>
+
+        <div class="plan-input">
+          <label for="plan-ai">
+            <span class="plan-title">AI背景合成プラン（jpeg納品）</span>
+            <span class="plan-price">¥30,000 / 1カット（税別）</span>
+          </label>
+          <div class="unit"><input id="plan-ai" type="number" min="0" step="1" value="0"><span>カット</span></div>
+        </div>
+
+        <div class="plan-input">
+          <label for="plan-cutout">
+            <span class="plan-title">切り抜き商品プラン（背景なし）</span>
+            <span class="plan-price">¥15,000 / 1カット（税別）</span>
+          </label>
+          <div class="unit"><input id="plan-cutout" type="number" min="0" step="1" value="0"><span>カット</span></div>
+        </div>
+
+        <div class="plan-input">
+          <label for="plan-coordinator">
+            <span class="plan-title">フードコーディネータープラン</span>
+            <span class="plan-price">¥50,000 / 1カット（税別）※5カット〜</span>
+          </label>
+          <div class="unit"><input id="plan-coordinator" type="number" min="0" step="1" value="0"><span>カット</span></div>
+          <p class="warning" id="coordinator-warning">※フードコーディネータープランは5カット以上から承ります</p>
+        </div>
+
+        <div class="plan-input">
+          <label for="plan-package">
+            <span class="plan-title">食品形態撮影</span>
+            <span class="plan-price">¥8,000 / 1カット（税別）</span>
+          </label>
+          <div class="unit"><input id="plan-package" type="number" min="0" step="1" value="0"><span>カット</span></div>
+        </div>
+
+        <p class="hint">金額は目安です。撮影内容や食材・備品の手配内容により、正式見積もりは変動する場合があります。</p>
+      </section>
+
+      <section class="panel" aria-labelledby="preview-title">
+        <div class="panel-head">
+          <span class="panel-num">02</span>
+          <h2 id="preview-title">お見積りプレビュー（御見積書）</h2>
+        </div>
+
+        <div class="preview-tools">
+          <button class="btn" type="button" id="download-pdf">見積書をPDFでダウンロード</button>
+        </div>
+
+        <div class="estimate-doc" id="estimate-document">
+          <div class="doc-top">
+            <h3 class="doc-title">御見積書</h3>
+            <div class="doc-brand">
+              <b>SIZZLE.FOOD PHOTO</b>
+              <span>Food Photography Studio</span>
+            </div>
+          </div>
+
+          <div class="doc-meta">
+            <div><b>件名：</b>食品写真撮影 見積</div>
+            <div><b>発行日：</b><span id="issue-date"></span></div>
+            <div class="meta-company"><b>宛先：</b><span id="estimate-company">御中</span></div>
+            <div><b>表記：</b>税別単価 / 消費税10%</div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th class="qty">数量</th>
+                <th class="price">金額（税別）</th>
+              </tr>
+            </thead>
+            <tbody id="estimate-lines">
+              <tr class="placeholder"><td colspan="3">カット数を入力してください</td></tr>
+            </tbody>
+          </table>
+
+          <div class="totals">
+            <div class="total-row"><span>小計（税別）</span><b id="subtotal">¥0</b></div>
+            <div class="total-row"><span>消費税（10%）</span><b id="tax">¥0</b></div>
+            <div class="total-row grand"><span>御見積合計（税込）</span><b id="grand-total">¥0</b></div>
+          </div>
+
+          <p class="doc-note">
+            ※本見積書は入力内容に基づく概算のシミュレーションです。実際のご発注にあたっては、お打ち合わせにてご要望や具体的な撮影内容を詳しくお伺いした上で、最終的な正式お見積書を作成・ご提示させていただきます。
+          </p>
+          <div class="doc-footer">
+            運営会社：株式会社インターセクト<br>
+            お問い合わせ：info@example.com
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  const plans = [
+    { id: "plan-ai", name: "AI背景合成プラン（jpeg納品）", unit: 30000 },
+    { id: "plan-cutout", name: "切り抜き商品プラン（背景なし）", unit: 15000 },
+    { id: "plan-coordinator", name: "フードコーディネータープラン", unit: 50000 },
+    { id: "plan-package", name: "食品形態撮影", unit: 8000 }
+  ];
+
+  const yen = new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+    maximumFractionDigits: 0
+  });
+
+  const lineBody = document.getElementById("estimate-lines");
+  const subtotalEl = document.getElementById("subtotal");
+  const taxEl = document.getElementById("tax");
+  const grandTotalEl = document.getElementById("grand-total");
+  const warningEl = document.getElementById("coordinator-warning");
+  const companyInput = document.getElementById("company-name");
+  const estimateCompanyEl = document.getElementById("estimate-company");
+
+  function normalizeCount(input) {
+    const value = Number(input.value);
+    if (!Number.isFinite(value) || value < 0) return 0;
+    return Math.floor(value);
+  }
+
+  function setIssueDate() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    document.getElementById("issue-date").textContent = `${yyyy}/${mm}/${dd}`;
+  }
+
+  function calculate() {
+    const rows = [];
+    let subtotal = 0;
+
+    plans.forEach((plan) => {
+      const input = document.getElementById(plan.id);
+      const count = normalizeCount(input);
+      if (String(count) !== input.value && input.value !== "") input.value = count;
+
+      if (count > 0) {
+        const amount = count * plan.unit;
+        subtotal += amount;
+        rows.push({ ...plan, count, amount });
+      }
+    });
+
+    const coordinatorCount = normalizeCount(document.getElementById("plan-coordinator"));
+    warningEl.classList.toggle("show", coordinatorCount >= 1 && coordinatorCount <= 4);
+
+    if (rows.length === 0) {
+      lineBody.innerHTML = '<tr class="placeholder"><td colspan="3">カット数を入力してください</td></tr>';
+    } else {
+      lineBody.innerHTML = rows.map((row) => `
+        <tr>
+          <td>${row.name}<br><span class="accent">${yen.format(row.unit)} / 1カット</span></td>
+          <td class="qty">${row.count}カット</td>
+          <td class="price">${yen.format(row.amount)}</td>
+        </tr>
+      `).join("");
+    }
+
+    const tax = Math.floor(subtotal * 0.1);
+    const grandTotal = subtotal + tax;
+    subtotalEl.textContent = yen.format(subtotal);
+    taxEl.textContent = yen.format(tax);
+    grandTotalEl.textContent = yen.format(grandTotal);
+
+    return { subtotal, tax, grandTotal };
+  }
+
+  function updateCompanyName() {
+    const companyName = companyInput.value.trim();
+    estimateCompanyEl.textContent = companyName ? `${companyName} 御中` : "御中";
+  }
+
+  function downloadPdf() {
+    const totals = calculate();
+    if (totals.subtotal === 0) {
+      alert("カット数を入力してください");
+      return;
+    }
+
+    const element = document.getElementById("estimate-document");
+    const options = {
+      margin: [10, 10, 10, 10],
+      filename: "SIZZLE_STUDIO_見積書.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    };
+
+    html2pdf().set(options).from(element).save();
+  }
+
+  setIssueDate();
+  plans.forEach((plan) => {
+    document.getElementById(plan.id).addEventListener("input", calculate);
+  });
+  companyInput.addEventListener("input", updateCompanyName);
+  document.getElementById("download-pdf").addEventListener("click", downloadPdf);
+  updateCompanyName();
+  calculate();
+</script>
+</body>
+</html>
