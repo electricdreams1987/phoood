@@ -383,16 +383,31 @@
       return;
     }
 
+    updateCompanyName();
     const element = document.getElementById("estimate-document");
+    const pdfElement = element.cloneNode(true);
+    pdfElement.style.width = "190mm";
+    pdfElement.style.maxWidth = "190mm";
+    pdfElement.style.borderRadius = "0";
+    pdfElement.style.boxShadow = "none";
+    pdfElement.style.position = "fixed";
+    pdfElement.style.left = "-10000px";
+    pdfElement.style.top = "0";
+    pdfElement.style.background = "#ffffff";
+    document.body.appendChild(pdfElement);
+
     const options = {
       margin: [10, 10, 10, 10],
       filename: "SIZZLE_STUDIO_見積書.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css", "legacy"], avoid: [".doc-note", ".doc-footer", ".total-row"] }
     };
 
-    html2pdf().set(options).from(element).save();
+    html2pdf().set(options).from(pdfElement).save().then(() => {
+      pdfElement.remove();
+    });
   }
 
   setIssueDate();
