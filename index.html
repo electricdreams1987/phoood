@@ -311,8 +311,23 @@
   .gal-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
   .gtile{aspect-ratio:1;border-radius:10px;border:1px solid var(--line);position:relative;overflow:hidden;transition:transform .25s ease;}
   .gtile:hover{transform:scale(1.04);z-index:2;box-shadow:var(--shadow);}
+  .gtile{cursor:zoom-in;}
   .gtile .glabel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(36,27,20,.5);font-weight:500;}
   .gtile img{width:100%;height:100%;object-fit:cover;}
+  .lightbox{
+    position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+    padding:24px;background:rgba(36,27,20,.86);backdrop-filter:blur(6px);
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:min(100%,1100px);max-height:86svh;object-fit:contain;
+    border-radius:12px;box-shadow:0 24px 60px -22px rgba(0,0,0,.75);
+  }
+  .lightbox-close{
+    position:absolute;top:18px;right:18px;width:42px;height:42px;border:0;border-radius:50%;
+    background:#fff;color:var(--ink);font-size:1.55rem;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
 
   /* ---------- access ---------- */
   .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
@@ -510,7 +525,6 @@
         <img class="photo-img" src="images/hero-steak.png" alt="ステーキとグリル野菜を盛り付けた完成写真">
       </div>
     </div>
-    <p class="solve-note">ただの記録写真から、食欲を刺激して売上をつくる商業写真へ。<br>確かな撮影技術と最新AIの掛け合わせが、この圧倒的な差を生み出します。</p>
   </div>
 </section>
 
@@ -624,7 +638,7 @@
       </div>
     </div>
     <p class="price-notes">
-      ※ 価格はすべて税別です。&nbsp; ※ 食材を弊社で用意する場合、食材費は別途。&nbsp; ※ 食器レンタルが必要な場合、別途費用がかかります。&nbsp; ※ レシピ作成・デザイン制作も併せてご相談いただけます。<br><span style="font-size:0.85em;">※ 基本プランはプロ撮影+AI背景生成となりますが、フードコーディネーターを配した従来型のスタジオ建て込み撮影(調理・スタイリング)も可能です。用途に合わせてご相談ください。</span>
+      ※ 価格はすべて税別です。
     </p>
     <div class="hero-cta" style="justify-content:center;margin-top:22px;margin-bottom:0;">
       <a class="btn btn-primary" href="estimation.html">見積もりシミュレーションはこちら<span class="arw">→</span></a>
@@ -687,6 +701,11 @@
   </div>
 </section>
 
+<div class="lightbox" id="galleryLightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+  <img src="" alt="">
+</div>
+
 <!-- ============ FINAL CTA ============ -->
 <section class="section final" id="contact">
   <div class="wrap">
@@ -720,7 +739,7 @@
           <h4>Company</h4>
           <a href="#">会社概要</a>
           <a href="contact.html">お問い合わせ</a>
-          <a href="#">プライバシーポリシー</a>
+          <a href="privacy.html">プライバシーポリシー</a>
         </div>
       </div>
     </div>
@@ -760,6 +779,31 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
   }
+
+  // gallery lightbox
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const lightboxClose = lightbox.querySelector('.lightbox-close');
+  document.querySelectorAll('.gtile img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || '制作事例';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    });
+  });
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.src = '';
+  };
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
 </script>
 </body>
 </html>
