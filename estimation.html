@@ -197,29 +197,13 @@
 
         <div class="plan-input">
           <label for="plan-ai">
-            <span class="plan-title">AI背景合成プラン（jpeg納品）</span>
+            <span class="plan-title">プロ撮影 + 背景AI生成プラン</span>
             <span class="plan-price">¥30,000 / 1カット（税別）</span>
           </label>
           <div class="unit"><input id="plan-ai" type="number" min="0" step="1" value="0"><span>カット</span></div>
         </div>
 
-        <div class="plan-input">
-          <label for="plan-cutout">
-            <span class="plan-title">切り抜き商品プラン（背景なし）</span>
-            <span class="plan-price">¥15,000 / 1カット（税別）</span>
-          </label>
-          <div class="unit"><input id="plan-cutout" type="number" min="0" step="1" value="0"><span>カット</span></div>
-        </div>
-
-        <div class="plan-input">
-          <label for="plan-package">
-            <span class="plan-title">食品形態撮影</span>
-            <span class="plan-price">¥8,000 / 1カット（税別）</span>
-          </label>
-          <div class="unit"><input id="plan-package" type="number" min="0" step="1" value="0"><span>カット</span></div>
-        </div>
-
-        <p class="hint">金額は目安です。撮影内容や食材・備品の手配内容により、正式見積もりは変動する場合があります。</p>
+        <p class="hint">金額は目安です。商品パッケージ撮影、フードコーディネータープランは別途ご相談ください。</p>
       </section>
 
       <section class="panel" aria-labelledby="preview-title">
@@ -283,9 +267,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
   const plans = [
-    { id: "plan-ai", name: "AI背景合成プラン（jpeg納品）", unit: 30000 },
-    { id: "plan-cutout", name: "切り抜き商品プラン（背景なし）", unit: 15000 },
-    { id: "plan-package", name: "食品形態撮影", unit: 8000 }
+    { id: "plan-ai", name: "プロ撮影 + 背景AI生成プラン", unit: 30000 }
   ];
 
   const yen = new Intl.NumberFormat("ja-JP", {

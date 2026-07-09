@@ -223,7 +223,7 @@
   .str-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
   .str-card .top{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:18px;}
   .str-card .top .photo-img{z-index:0;}
-  .str-card .top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,27,20,.06),rgba(36,27,20,.42));z-index:1;}
+  .str-card .top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(36,27,20,.02),rgba(36,27,20,.14));z-index:1;}
   .str-card .knum{position:absolute;top:14px;left:16px;font-family:"Anton";font-size:1.5rem;color:#fff;
     background:rgba(36,27,20,.55);width:1.9em;height:1.9em;display:flex;align-items:center;justify-content:center;border-radius:50%;z-index:2;}
   .str-card .body{padding:24px 24px 30px;}
@@ -269,7 +269,7 @@
   .flow-note{margin:22px auto 0;max-width:760px;text-align:center;font-size:.86rem;line-height:1.8;color:var(--ink-soft);}
 
   /* ---------- pricing ---------- */
-  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:stretch;}
+  .price-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch;max-width:860px;margin:0 auto;}
   .plan{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 28px;display:flex;flex-direction:column;position:relative;}
   .plan.feat{border:2px solid var(--sizzle);box-shadow:var(--shadow);}
   .plan.feat .ribbon{position:absolute;top:-13px;left:28px;background:var(--sizzle);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.35em .9em;border-radius:999px;}
@@ -469,7 +469,7 @@
       <h1><span class="keep">プロの撮影 × AI背景で、</span><br><span class="hl">“売れる写真”</span>を<br>高品質・低価格で</h1>
       <div class="hero-mobile-visual">
         <div class="frame">
-          <img class="photo-img" src="images/hero-steak-glam.png" alt="焼きたてのステーキとグリル野菜の料理写真">
+          <img class="photo-img" src="images/main-02.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
         </div>
       </div>
       <p class="lead">通販・カタログ・パッケージ・EC・広告で「選ばれる」食品写真を、<br>企画から撮影・納品までワンストップで。</p>
@@ -483,7 +483,7 @@
     </div>
     <div class="hero-visual">
       <div class="frame">
-        <img class="photo-img" src="images/hero-steak-glam.png" alt="焼きたてのステーキとグリル野菜の料理写真">
+        <img class="photo-img" src="images/main-02.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
       </div>
     </div>
   </div>
@@ -538,11 +538,11 @@
     </div>
     <div class="str">
       <div class="str-card reveal">
-        <div class="top"><img class="photo-img" src="images/gallery-meat.png" alt="肉料理のフード写真"><span class="knum">1</span></div>
+        <div class="top"><img class="photo-img" src="images/mooncake-shot.jpg" alt="プロが撮影した月餅の食品写真"><span class="knum">1</span></div>
         <div class="body"><h3>プロが撮影する<br>食品写真</h3><p>光・構図・質感を見極め、<br>湯気や照りまで伝わる<br>“おいしそう”な一枚に仕上げます。</p></div>
       </div>
       <div class="str-card reveal">
-        <div class="top"><img class="photo-img" src="images/solution-workflow.png" alt="食品撮影の制作フローを表すスタジオ風景"><span class="knum">2</span></div>
+        <div class="top"><img class="photo-img" src="images/mooncake-ai-composite.jpg" alt="月餅の食品写真にAI背景を合成した画像"><span class="knum">2</span></div>
         <div class="body"><h3>背景や器はAIで生成し、<br>用途に合わせて最適化</h3><p>商品イメージや掲載媒体に合わせて、<br>世界観のある背景や器を制作。<br>撮影後の展開もしやすくなります。</p></div>
       </div>
       <div class="str-card reveal">
@@ -577,17 +577,16 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Price</span>
-      <h2>撮影は1カットから。<br>料金はすべて込みで。</h2>
-      <p>撮影代・AI背景生成・基本レタッチをまとめた、<br>分かりやすい価格設定です。</p>
+      <h2>料金はシンプルに、<br>1プラン。</h2>
+      <p>プロ撮影・背景AI生成・基本レタッチをまとめた、<br>分かりやすい価格設定です。</p>
     </div>
     <div class="price-grid">
       <div class="plan plan-main feat reveal">
-        <span class="ribbon">一番人気</span>
-        <div class="pname">AI背景合成プラン（jpeg納品）</div>
-        <div class="psub">プロ撮影とAI背景による驚きの高コスパ</div>
-        <div class="pprice"><span class="yen">¥</span><span class="val">30,000</span><span class="tilde">〜</span></div>
+        <div class="pname">プロ撮影 + 背景AI生成プラン</div>
+        <div class="psub">プロ撮影とAI背景生成による高品質な食品写真</div>
+        <div class="pprice"><span class="yen">¥</span><span class="val">30,000</span></div>
         <div class="pcut">／ 1カット（税別）</div>
-        <p class="pdesc">当スタジオ最大の強み。プロが撮影した商品のシズル感と、最新AIが生成する背景を美しく合成。スタジオ代をかけずに理想の世界観を表現します。</p>
+        <p class="pdesc">プロが撮影した商品のシズル感と、最新AIが生成する背景を美しく合成。スタジオ代をかけずに理想の世界観を表現します。</p>
         <ul>
           <li>プロの食品撮影とAI背景の高品質な合成</li>
           <li>カフェやキッチンなど無限のシチュエーション指定</li>
@@ -596,37 +595,9 @@
         </ul>
         <a class="btn btn-primary" href="contact.html">このプランで相談</a>
       </div>
-      <div class="plan reveal">
-        <div class="pname">切り抜き商品プラン<br>（背景なし）</div>
-        <div class="psub">シンプルな商品単体カット</div>
-        <div class="pprice"><span class="yen">¥</span><span class="val">15,000</span><span class="tilde">〜</span></div>
-        <div class="pcut">／ 1カット（税別）</div>
-        <p class="pdesc">中身の商品そのものの魅力を引き出すベーシックなプラン。</p>
-        <ul>
-          <li>プロカメラマンによる白背景撮影</li>
-          <li>商品の色味と質感を正確に再現</li>
-          <li>5カット以上のご依頼にも柔軟に対応</li>
-          <li>ECサイトやカタログの商品一覧に最適</li>
-        </ul>
-        <a class="btn btn-ghost" href="contact.html">このプランで相談</a>
-      </div>
-      <div class="plan reveal">
-        <div class="pname">食品形態撮影</div>
-        <div class="psub">パッケージ・外装のそのまま撮影</div>
-        <div class="pprice"><span class="yen">¥</span><span class="val">8,000</span><span class="tilde">〜</span></div>
-        <div class="pcut">／ 1カット（税別）</div>
-        <p class="pdesc">商品の未開封パッケージや外箱、袋などをそのまま綺麗に撮影するプラン。</p>
-        <ul>
-          <li>未開封のパッケージや外箱をそのまま撮影</li>
-          <li>歪みのない正確な商品形状の記録</li>
-          <li>ECの一覧用や流通向け資料に最適</li>
-          <li>低コストで大量のアイテム数にも対応可能</li>
-        </ul>
-        <a class="btn btn-ghost" href="contact.html">このプランで相談</a>
-      </div>
     </div>
     <p class="price-notes">
-      ※ 価格はすべて税別です。
+      ※ 価格は税別です。商品パッケージ撮影、フードコーディネータープランは別途ご相談ください。
     </p>
     <div class="hero-cta" style="justify-content:center;margin-top:22px;margin-bottom:0;">
       <a class="btn btn-primary" href="estimation.html">見積もりシミュレーションはこちら<span class="arw">→</span></a>
@@ -640,7 +611,7 @@
     <div class="section-head center">
       <span class="eyebrow">Cost Comparison</span>
       <h2>料金比較</h2>
-      <p>スタジオ代や備品代、コーディネート代など、<br>一般的な撮影で追加されがちな費用をすべて含んだコミコミ価格です。<br><span>（※AI背景合成プラン 3カットを半日で撮影した場合の比較一例）</span></p>
+      <p>スタジオ代や備品代、コーディネート代など、<br>一般的な撮影で追加されがちな費用をすべて含んだコミコミ価格です。<br><span>（※プロ撮影 + 背景AI生成プラン 3カットを半日で撮影した場合の比較一例）</span></p>
     </div>
     <div class="cmp-wrap">
       <table class="cmp">
