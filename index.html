@@ -252,7 +252,7 @@
 
   /* ---------- process ---------- */
   .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 16px;position:relative;min-height:190px;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 16px;position:relative;min-height:190px;text-align:center;}
   .step:not(:last-child)::after{
     content:"";position:absolute;right:-25px;top:36px;width:34px;height:2px;
     background:linear-gradient(90deg,rgba(230,78,27,.2),var(--sizzle));border-radius:999px;z-index:2;
@@ -262,7 +262,7 @@
     border-top:2px solid var(--sizzle);border-right:2px solid var(--sizzle);
     transform:rotate(45deg);z-index:3;
   }
-  .step .sn{font-family:"Anton";font-size:1rem;color:#fff;background:var(--ink);width:2.4em;height:2.4em;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;}
+  .step .sn{font-family:"Anton";font-size:1rem;color:#fff;background:var(--ink);width:2.4em;height:2.4em;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:.05em;margin:0 auto;}
   .step h3{font-size:1.36rem;font-weight:900;margin:.68em 0 .4em;line-height:1.38;color:var(--sizzle);}
   .step p{font-size:.86rem;color:var(--ink-soft);margin:0;line-height:1.75;}
   .step .badge{display:inline-block;margin-top:.6em;font-size:.7rem;font-weight:700;color:var(--sizzle);background:rgba(230,78,27,.1);padding:.25em .7em;border-radius:999px;}
@@ -514,7 +514,7 @@
     <div class="section-head center">
       <span class="eyebrow">Why we sell</span>
       <h2>写真を変えるだけで、ここまで変わる。</h2>
-      <p>社内環境での簡易的な撮影と、当スタジオによる「プロ撮影×AI背景合成」の比較です。<br>商品自体の美味しさを引き出し、最適な世界観で包み込むことで、購買意欲を動かします。</p>
+      <p>社内環境での簡易的な撮影と、プロカメラマンによる撮影の比較です。<br>商品自体の美味しさを引き出し、購買意欲を動かします。</p>
     </div>
     <div class="ba">
       <div class="frame">
@@ -524,7 +524,7 @@
       <div class="arrow" aria-hidden="true"></div>
       <div class="frame">
         <span class="tag after">After / 当スタジオ（プロ撮影 × AI背景）</span>
-        <img class="photo-img" src="images/Whywesell01.jpg" alt="プロ撮影とAI背景合成で仕上げた食品写真">
+        <img class="photo-img" src="images/Whywesell01.jpg" alt="プロカメラマンが撮影した食品写真">
       </div>
     </div>
   </div>
@@ -541,15 +541,15 @@
     <div class="str">
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/mooncake-shot.jpg" alt="プロが撮影した月餅の食品写真"><span class="knum">1</span></div>
-        <div class="body"><h3>プロが撮影する<br>食品写真</h3><p>光・構図・質感を見極め、<br>湯気や照りまで伝わる<br>“おいしそう”な一枚に仕上げます。</p></div>
+        <div class="body"><h3>プロが撮影する<br>食品写真</h3><p>光・構図・質感を見極め、<br>“おいしそう”な一枚に仕上げます。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/mooncake-ai-composite.jpg" alt="月餅の食品写真にAI背景を合成した画像"><span class="knum">2</span></div>
-        <div class="body"><h3>背景や器はAIで生成し、<br>用途に合わせて最適化</h3><p>商品イメージや掲載媒体に合わせて、<br>世界観のある背景や器を制作。<br>撮影後の展開もしやすくなります。</p></div>
+        <div class="body"><h3>背景や器はAIで生成し、<br>用途に合わせて最適化</h3><p>商品イメージや掲載媒体に合わせた<br>イメージの作成が可能。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/Our%20Strength03.png" alt="高品質かつ低価格を実現する食品写真制作のイメージ"><span class="knum">3</span></div>
-        <div class="body"><h3>高品質かつ<br>低価格を実現</h3><p>従来の予算でも、<br>ウェブや印刷媒体の<br>写真クオリティ向上が可能です。</p></div>
+        <div class="body"><h3>高品質かつ<br>低価格を実現</h3><p>従来の予算でも、ウェブや印刷媒体の<br>写真クオリティ向上が可能です。</p></div>
       </div>
     </div>
   </div>
