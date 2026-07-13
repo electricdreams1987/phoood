@@ -98,24 +98,39 @@
   .hero-grid{display:block;position:relative;min-height:calc(100svh - 74px);}
   .hero-copy{
     position:absolute;inset:0;z-index:4;
-    display:flex;flex-direction:column;justify-content:center;
-    max-width:var(--maxw);margin:0 auto;padding:64px 24px;color:var(--ink);
+    display:flex;flex-direction:column;justify-content:flex-start;
+    width:min(86vw,1500px);margin:0;padding:58px clamp(24px,4.2vw,80px) 64px;color:#fff;
+  }
+  .hero h1 .nowrap{white-space:nowrap;}
+  .hero h1 .mobile-break{display:none;}
+  .hero h1 .copy-badge{
+    display:inline-flex;align-items:center;margin-right:.18em;padding:.16em .42em .2em;
+    border-radius:10px;background:rgba(250,245,238,.92);color:var(--ink);
+    box-shadow:0 10px 28px -18px rgba(36,27,20,.6);
+    font-size:.68em;line-height:1.12;text-shadow:none;vertical-align:.16em;
   }
   .hero h1{
-    font-weight:900;font-size:clamp(2.55rem,4.55vw,4rem);line-height:1.14;letter-spacing:.01em;margin:.35em 0 .45em;
-    max-width:10.5em;text-shadow:0 1px 24px rgba(250,245,238,.72);
-    text-wrap:balance;
+    font-weight:900;font-size:clamp(2.35rem,3.5vw,4.15rem);line-height:1.12;letter-spacing:.01em;margin:0 0 .45em;
+    max-width:none;
+    text-shadow:
+      0 2px 4px rgba(36,27,20,.42),
+      0 0 18px rgba(36,27,20,.34),
+      0 10px 30px rgba(36,27,20,.32);
   }
   .hero h1 .keep{white-space:nowrap;}
-  .hero h1 .hl{position:relative;white-space:nowrap;color:var(--sizzle);}
+  .hero h1 .hl{position:relative;white-space:nowrap;color:var(--sizzle);font-size:1.12em;}
   .hero h1 .hl::after{
     content:"";position:absolute;left:-2%;right:-2%;bottom:.08em;height:.28em;
     background:rgba(230,78,27,.22);z-index:-1;transform:scaleX(0);transform-origin:left;
     animation:draw 1s .5s cubic-bezier(.7,0,.3,1) forwards;
   }
   @keyframes draw{to{transform:scaleX(1);}}
-  .hero p.lead{font-size:1.05rem;color:var(--ink-soft);max-width:34em;margin:0 0 1.8em;text-shadow:0 1px 18px rgba(250,245,238,.82);}
+  .hero p.lead{
+    font-size:1.28rem;font-weight:900;color:rgba(255,255,255,.96);max-width:none;margin:0 0 1.8em;white-space:nowrap;
+    text-shadow:0 2px 5px rgba(36,27,20,.42),0 0 16px rgba(36,27,20,.32);
+  }
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:2em;}
+  .hero .hero-cta{flex-direction:column;align-items:flex-start;}
   .chips{display:flex;flex-wrap:wrap;gap:10px;}
   .chip{
     display:inline-flex;align-items:center;gap:.5em;font-size:.84rem;font-weight:700;
@@ -133,9 +148,7 @@
   .hero .frame{height:calc(100svh - 74px);min-height:640px;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;}
   .hero .frame::after{
     content:"";position:absolute;inset:0;z-index:1;
-    background:
-      linear-gradient(90deg,rgba(250,245,238,.96) 0%,rgba(250,245,238,.84) 36%,rgba(250,245,238,.28) 62%,rgba(250,245,238,0) 100%),
-      linear-gradient(180deg,rgba(250,245,238,.55) 0%,rgba(250,245,238,0) 48%,rgba(36,27,20,.28) 100%);
+    display:none;
   }
   .frame .placeholder-art{position:absolute;inset:0;}
   .photo-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
@@ -394,19 +407,33 @@
     .hero-cta .btn,.final-cta .btn{flex:1;justify-content:center;}
     .hero .frame{aspect-ratio:4/3;border-radius:14px;}
 
-    .hero{padding:42px 0 64px;background:var(--paper);}
+    .hero{padding:14px 0 64px;background:var(--paper);}
     .hero .wrap{padding:0 18px;}
     .hero-grid{min-height:0;}
     .hero-copy{
-      position:static;inset:auto;z-index:auto;
-      max-width:none;margin:0;padding:0;
+      position:relative;inset:auto;z-index:auto;
+      width:auto;max-width:none;margin:0;padding:0;
       justify-content:flex-start;
       color:var(--ink);
     }
+    .hero h1 .nowrap{white-space:normal;}
+    .hero h1 .mobile-break{display:block;}
+    .hero h1 .copy-badge{
+      display:inline-flex;margin:0 auto .28em;padding:.22em .55em .26em;
+      border-radius:8px;background:rgba(250,245,238,.94);color:var(--ink);
+      font-size:.7em;line-height:1.15;
+    }
     .hero-copy .eyebrow{color:var(--sizzle);}
-    .hero h1{font-size:clamp(1.62rem,6.9vw,2rem);line-height:1.2;margin:.45em 0 .65em;text-shadow:none;}
-    .hero p.lead{font-size:.92rem;line-height:1.85;color:var(--ink-soft);margin:1.45em 0 1.35em;max-width:100%;text-shadow:none;}
-    .hero-cta{gap:10px;margin-bottom:1.1em;}
+    .hero h1{
+      position:absolute;left:0;right:0;top:22px;z-index:3;
+      padding:0 20px;color:#fff;font-size:clamp(1.82rem,8vw,2.55rem);
+      line-height:1.16;margin:0;text-align:center;text-shadow:0 3px 12px rgba(36,27,20,.55),0 0 22px rgba(36,27,20,.45);
+    }
+    .hero p.lead{
+      font-size:1rem;font-weight:800;line-height:1.85;color:var(--ink);
+      margin:20px 0 1.25em;max-width:100%;white-space:normal;text-shadow:none;
+    }
+    .hero .hero-cta{gap:10px;margin-bottom:1.1em;align-items:stretch;}
     .hero-cta .btn{padding:.78em 1.1em;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);}
     .hero-cta .btn-primary{background:var(--sizzle);color:#fff;}
     .chips{gap:8px;margin-top:0;padding-bottom:0;}
@@ -414,11 +441,14 @@
     .hero-visual{display:none;}
     .hero-mobile-visual{display:block;position:relative;margin:0 -18px;}
     .hero-mobile-visual .frame{
-      height:auto;min-height:0;aspect-ratio:16/10;
+      height:auto;min-height:0;aspect-ratio:4/5;
       border:0;border-radius:0;box-shadow:none;
     }
-    .hero-mobile-visual .frame::after{display:none;}
-    .hero-mobile-visual .photo-img{object-position:62% center;}
+    .hero-mobile-visual .frame::after{
+      display:block;
+      background:linear-gradient(180deg,rgba(36,27,20,.42) 0%,rgba(36,27,20,.08) 46%,rgba(36,27,20,.2) 100%);
+    }
+    .hero-mobile-visual .photo-img{object-position:46% center;}
     .hero-mobile-visual .stamp{right:16px;bottom:14px;padding:.62em .8em;border-radius:10px;}
     .stamp .num{font-size:1.65rem;}
     .stamp small{font-size:.52rem;}
@@ -467,25 +497,21 @@
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Food Photography Studio</span>
-      <h1><span class="keep">プロの撮影 × AI背景で、</span><br><span class="hl">“売れる写真”</span>を<br>高品質・低価格で</h1>
+      <h1><span class="nowrap"><span class="copy-badge">プロの撮影 × AI背景</span><br class="mobile-break"><span class="hl">“売れる写真”</span>を<br class="mobile-break">高品質・低価格で</span></h1>
       <div class="hero-mobile-visual">
         <div class="frame">
-          <img class="photo-img" src="images/main03.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
+          <img class="photo-img" src="images/main03_01.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
         </div>
       </div>
-      <p class="lead">通販・カタログ・パッケージ・EC・広告で「選ばれる」食品写真を、<br>企画から撮影・納品までワンストップで。</p>
+      <p class="lead">通販・カタログ・パッケージ・EC・広告で「選ばれる」食品写真を、企画から撮影・納品までワンストップで。</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="contact.html">無料で見積り・相談する<span class="arw">→</span></a>
-        <a class="btn btn-ghost" href="#gallery">制作事例を見る</a>
-      </div>
-      <div class="chips">
-        <span class="chip">1カットから対応</span>
+        <a class="btn btn-primary" href="contact.html">無料で見積り・相談する</a>
+        <a class="btn btn-primary" href="#gallery">制作事例を見る</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="frame">
-        <img class="photo-img" src="images/main03.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
+        <img class="photo-img" src="images/main03_01.jpg" alt="木のテーブルに置かれた彩り豊かな料理写真">
       </div>
     </div>
   </div>
