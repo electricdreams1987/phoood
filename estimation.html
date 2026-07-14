@@ -212,6 +212,14 @@
           <div class="unit"><input id="plan-five" type="number" min="0" step="1" value="0"><span>セット</span></div>
         </div>
 
+        <div class="plan-input">
+          <label for="plan-supply">
+            <span class="plan-title">画像支給プラン</span>
+            <span class="plan-price">¥15,000 / 1カット（税別）</span>
+          </label>
+          <div class="unit"><input id="plan-supply" type="number" min="0" step="1" value="0"><span>カット</span></div>
+        </div>
+
         <p class="hint">金額は目安です。商品パッケージ撮影、フードコーディネータープランは別途ご相談ください。</p>
       </section>
 
@@ -277,7 +285,8 @@
 <script>
   const plans = [
     { id: "plan-ai", name: "1カットプラン", unit: 30000, unitText: "1カット", qtyLabel: "カット" },
-    { id: "plan-five", name: "5カットプラン", unit: 120000, unitText: "5カット", qtyLabel: "セット" }
+    { id: "plan-five", name: "5カットプラン", unit: 120000, unitText: "5カット", qtyLabel: "セット" },
+    { id: "plan-supply", name: "画像支給プラン", unit: 15000, unitText: "1カット", qtyLabel: "カット" }
   ];
 
   const yen = new Intl.NumberFormat("ja-JP", {
