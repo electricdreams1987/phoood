@@ -111,9 +111,6 @@
     background:#fff;border:0;border-radius:12px;padding:34px;
     color:var(--ink);
   }
-  .estimate-doc.pdf-desktop{
-    width:720px;max-width:720px;padding:34px;border-radius:12px;
-  }
   .doc-top{
     display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
     border-bottom:3px solid var(--ink);padding-bottom:20px;margin-bottom:22px;
@@ -146,17 +143,6 @@
     color:var(--ink-faint);font-size:.72rem;line-height:1.7;
   }
   .accent{color:var(--sizzle)}
-
-  .estimate-doc.pdf-desktop .doc-top{
-    display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
-  }
-  .estimate-doc.pdf-desktop .doc-brand{text-align:right;margin-top:0}
-  .estimate-doc.pdf-desktop .doc-title{font-size:1.8rem}
-  .estimate-doc.pdf-desktop .doc-meta{
-    display:grid;grid-template-columns:minmax(0,1fr) auto;font-size:.9rem;
-  }
-  .estimate-doc.pdf-desktop th,
-  .estimate-doc.pdf-desktop td{padding:13px 12px;font-size:.9rem}
 
   @media(max-width:900px){
     main{padding:38px 0 56px}
@@ -296,6 +282,7 @@
   </div>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
   const plans = [
@@ -373,8 +360,182 @@
     estimateCompanyEl.textContent = companyName ? `${companyName} 御中` : "御中";
   }
 
+  function getEstimateData() {
+    const rows = [];
+    let subtotal = 0;
+
+    plans.forEach((plan) => {
+      const input = document.getElementById(plan.id);
+      const count = normalizeCount(input);
+      if (count > 0) {
+        const amount = count * plan.unit;
+        subtotal += amount;
+        rows.push({ ...plan, count, amount });
+      }
+    });
+
+    const tax = Math.floor(subtotal * 0.1);
+    const grandTotal = subtotal + tax;
+    return { rows, subtotal, tax, grandTotal };
+  }
+
+  function drawText(ctx, text, x, y, options = {}) {
+    ctx.save();
+    ctx.font = options.font || '24px "Noto Sans JP", sans-serif';
+    ctx.fillStyle = options.color || "#241B14";
+    ctx.textAlign = options.align || "left";
+    ctx.textBaseline = "top";
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight, options = {}) {
+    ctx.save();
+    ctx.font = options.font || '20px "Noto Sans JP", sans-serif';
+    ctx.fillStyle = options.color || "#6E5F52";
+    ctx.textAlign = options.align || "left";
+    ctx.textBaseline = "top";
+    let line = "";
+    Array.from(text).forEach((char) => {
+      const testLine = line + char;
+      if (ctx.measureText(testLine).width > maxWidth && line) {
+        ctx.fillText(line, x, y);
+        line = char;
+        y += lineHeight;
+      } else {
+        line = testLine;
+      }
+    });
+    if (line) ctx.fillText(line, x, y);
+    ctx.restore();
+    return y + lineHeight;
+  }
+
+  function createEstimateCanvas(data) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1240;
+    canvas.height = 1754;
+    const ctx = canvas.getContext("2d");
+    const ink = "#241B14";
+    const soft = "#6E5F52";
+    const faint = "#9B8A7B";
+    const paper = "#FAF5EE";
+    const line = "rgba(36,27,20,.16)";
+    const sizzle = "#E64E1B";
+    const companyName = companyInput.value.trim();
+    const companyText = companyName ? `${companyName} 御中` : "御中";
+    const issueDate = document.getElementById("issue-date").textContent;
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const left = 110;
+    const right = 1130;
+    const width = right - left;
+    let y = 110;
+
+    drawText(ctx, "御見積書", left, y, { font: '900 54px "Noto Sans JP", sans-serif', color: ink });
+    drawText(ctx, "Phoood", right, y + 4, { font: '900 34px "Noto Sans JP", sans-serif', color: ink, align: "right" });
+    drawText(ctx, "Food Photo × AI", right, y + 50, { font: '700 18px "Noto Sans JP", sans-serif', color: soft, align: "right" });
+
+    y += 118;
+    ctx.fillStyle = ink;
+    ctx.fillRect(left, y, width, 5);
+
+    y += 70;
+    drawText(ctx, "件名：", left, y, { font: '900 24px "Noto Sans JP", sans-serif', color: ink });
+    drawText(ctx, "食品写真撮影 見積", left + 75, y, { font: '700 24px "Noto Sans JP", sans-serif', color: soft });
+    drawText(ctx, `発行日：${issueDate}`, right, y, { font: '700 24px "Noto Sans JP", sans-serif', color: soft, align: "right" });
+    y += 46;
+    drawText(ctx, "宛先：", left, y, { font: '900 24px "Noto Sans JP", sans-serif', color: ink });
+    drawText(ctx, companyText, left + 75, y, { font: '700 24px "Noto Sans JP", sans-serif', color: ink });
+    y += 46;
+    drawText(ctx, "表記：", left, y, { font: '900 24px "Noto Sans JP", sans-serif', color: ink });
+    drawText(ctx, "税別単価 / 消費税10%", left + 75, y, { font: '700 24px "Noto Sans JP", sans-serif', color: soft });
+
+    y += 76;
+    const col1 = left;
+    const col2 = left + 650;
+    const col3 = right;
+    const headerH = 70;
+    ctx.fillStyle = paper;
+    ctx.fillRect(left, y, width, headerH);
+    drawText(ctx, "項目", col1 + 24, y + 22, { font: '900 24px "Noto Sans JP", sans-serif', color: soft });
+    drawText(ctx, "数量", col2, y + 22, { font: '900 24px "Noto Sans JP", sans-serif', color: soft, align: "right" });
+    drawText(ctx, "金額（税別）", col3 - 24, y + 22, { font: '900 24px "Noto Sans JP", sans-serif', color: soft, align: "right" });
+    y += headerH;
+
+    data.rows.forEach((row) => {
+      const rowH = 118;
+      drawText(ctx, row.name, col1 + 24, y + 26, { font: '700 24px "Noto Sans JP", sans-serif', color: ink });
+      drawText(ctx, `${yen.format(row.unit)} / ${row.unitText}`, col1 + 24, y + 64, { font: '700 22px "Noto Sans JP", sans-serif', color: sizzle });
+      drawText(ctx, `${row.count}${row.qtyLabel}`, col2, y + 42, { font: '700 24px "Noto Sans JP", sans-serif', color: ink, align: "right" });
+      drawText(ctx, yen.format(row.amount), col3 - 24, y + 42, { font: '700 24px "Noto Sans JP", sans-serif', color: ink, align: "right" });
+      ctx.strokeStyle = line;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(left, y + rowH);
+      ctx.lineTo(right, y + rowH);
+      ctx.stroke();
+      y += rowH;
+    });
+
+    y += 50;
+    const totalsX = right - 390;
+    const totalsW = 390;
+    const totalRow = (label, value) => {
+      drawText(ctx, label, totalsX, y, { font: '700 22px "Noto Sans JP", sans-serif', color: ink });
+      drawText(ctx, value, totalsX + totalsW, y, { font: '900 22px "Noto Sans JP", sans-serif', color: ink, align: "right" });
+      ctx.strokeStyle = line;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(totalsX, y + 40);
+      ctx.lineTo(totalsX + totalsW, y + 40);
+      ctx.stroke();
+      y += 58;
+    };
+    totalRow("小計（税別）", yen.format(data.subtotal));
+    totalRow("消費税（10%）", yen.format(data.tax));
+
+    ctx.fillStyle = ink;
+    const radius = 16;
+    const grandY = y;
+    ctx.beginPath();
+    ctx.moveTo(totalsX + radius, grandY);
+    ctx.lineTo(totalsX + totalsW - radius, grandY);
+    ctx.quadraticCurveTo(totalsX + totalsW, grandY, totalsX + totalsW, grandY + radius);
+    ctx.lineTo(totalsX + totalsW, grandY + 72 - radius);
+    ctx.quadraticCurveTo(totalsX + totalsW, grandY + 72, totalsX + totalsW - radius, grandY + 72);
+    ctx.lineTo(totalsX + radius, grandY + 72);
+    ctx.quadraticCurveTo(totalsX, grandY + 72, totalsX, grandY + 72 - radius);
+    ctx.lineTo(totalsX, grandY + radius);
+    ctx.quadraticCurveTo(totalsX, grandY, totalsX + radius, grandY);
+    ctx.fill();
+    drawText(ctx, "御見積合計（税込）", totalsX + 28, grandY + 21, { font: '900 23px "Noto Sans JP", sans-serif', color: "#ffffff" });
+    drawText(ctx, yen.format(data.grandTotal), totalsX + totalsW - 28, grandY + 21, { font: '900 23px "Noto Sans JP", sans-serif', color: "#ffffff", align: "right" });
+    y += 120;
+
+    y = Math.max(y, 1280);
+    const note = "※本見積書は入力内容に基づく概算のシミュレーションです。実際のご発注にあたっては、お打ち合わせにてご要望や具体的な撮影内容を詳しくお伺いした上で、最終的な正式お見積書を作成・ご提示させていただきます。";
+    y = wrapText(ctx, note, left, y, width, 32, { font: '20px "Noto Sans JP", sans-serif', color: faint });
+
+    y += 26;
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(right, y);
+    ctx.stroke();
+    y += 34;
+    drawText(ctx, "運営会社：株式会社インターセクト", left, y, { font: '20px "Noto Sans JP", sans-serif', color: faint });
+    drawText(ctx, "お問い合わせ：sizzle@inter-sect.co.jp", left, y + 32, { font: '20px "Noto Sans JP", sans-serif', color: faint });
+
+    return canvas;
+  }
+
   function downloadPdf() {
-    if (typeof html2pdf !== "function") {
+    const JsPdf = window.jspdf && window.jspdf.jsPDF;
+    if (typeof JsPdf !== "function") {
       alert("PDF作成ライブラリの読み込みに失敗しました。インターネット接続を確認して、ページを再読み込みしてください。");
       return;
     }
@@ -386,33 +547,25 @@
     }
 
     updateCompanyName();
-    const element = document.getElementById("estimate-document");
     const button = document.getElementById("download-pdf");
     const previousButtonText = button.textContent;
-
-    const options = {
-      margin: [10, 10, 10, 10],
-      filename: "Phoood_見積書.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: "#ffffff"
-      },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
-    };
+    const data = getEstimateData();
 
     button.disabled = true;
     button.textContent = "PDFを作成中...";
-    element.classList.add("pdf-desktop");
 
     Promise.resolve(document.fonts && document.fonts.ready)
-      .then(() => html2pdf().set(options).from(element).save())
+      .then(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+      .then(() => {
+        const canvas = createEstimateCanvas(data);
+        const pdf = new JsPdf({ unit: "mm", format: "a4", orientation: "portrait" });
+        pdf.addImage(canvas.toDataURL("image/jpeg", 0.98), "JPEG", 0, 0, 210, 297);
+        pdf.save("Phoood_見積書.pdf");
+      })
       .catch(() => {
         alert("PDFの作成に失敗しました。時間をおいてもう一度お試しください。");
       })
       .finally(() => {
-        element.classList.remove("pdf-desktop");
         button.disabled = false;
         button.textContent = previousButtonText;
       });
