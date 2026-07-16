@@ -108,12 +108,8 @@
   }
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(230,78,27,.9)}
   .estimate-doc{
-    background:#fff;border:1px solid var(--line);border-radius:12px;padding:34px;
+    background:#fff;border:0;border-radius:12px;padding:34px;
     color:var(--ink);
-  }
-  .estimate-doc.pdf-exporting{
-    border-color:transparent;
-    box-shadow:inset 0 0 0 1px var(--line);
   }
   .doc-top{
     display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
@@ -394,7 +390,6 @@
 
     button.disabled = true;
     button.textContent = "PDFを作成中...";
-    element.classList.add("pdf-exporting");
 
     Promise.resolve(document.fonts && document.fonts.ready)
       .then(() => html2pdf().set(options).from(element).save())
@@ -402,7 +397,6 @@
         alert("PDFの作成に失敗しました。時間をおいてもう一度お試しください。");
       })
       .finally(() => {
-        element.classList.remove("pdf-exporting");
         button.disabled = false;
         button.textContent = previousButtonText;
       });
