@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>見積もりシミュレーション | Phoood</title>
-<meta name="description" content="食品写真撮影の見積もりシミュレーションを自動計算し、PDFでダウンロードできます。">
+<title>見積りシミュレーション | Phoood</title>
+<meta name="description" content="食品写真撮影の見積りシミュレーションを自動計算し、PDFでダウンロードできます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -111,6 +111,9 @@
     background:#fff;border:0;border-radius:12px;padding:34px;
     color:var(--ink);
   }
+  .estimate-doc.pdf-desktop{
+    width:720px;max-width:720px;padding:34px;border-radius:12px;
+  }
   .doc-top{
     display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
     border-bottom:3px solid var(--ink);padding-bottom:20px;margin-bottom:22px;
@@ -143,6 +146,17 @@
     color:var(--ink-faint);font-size:.72rem;line-height:1.7;
   }
   .accent{color:var(--sizzle)}
+
+  .estimate-doc.pdf-desktop .doc-top{
+    display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
+  }
+  .estimate-doc.pdf-desktop .doc-brand{text-align:right;margin-top:0}
+  .estimate-doc.pdf-desktop .doc-title{font-size:1.8rem}
+  .estimate-doc.pdf-desktop .doc-meta{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;font-size:.9rem;
+  }
+  .estimate-doc.pdf-desktop th,
+  .estimate-doc.pdf-desktop td{padding:13px 12px;font-size:.9rem}
 
   @media(max-width:900px){
     main{padding:38px 0 56px}
@@ -181,7 +195,7 @@
   <div class="wrap">
     <section class="hero">
       <span class="eyebrow">Estimate</span>
-      <h1>見積もりシミュレーション</h1>
+      <h1>見積りシミュレーション</h1>
       <p>必要なカット数を入力すると、御見積書を自動で作成できます。</p>
     </section>
 
@@ -390,6 +404,7 @@
 
     button.disabled = true;
     button.textContent = "PDFを作成中...";
+    element.classList.add("pdf-desktop");
 
     Promise.resolve(document.fonts && document.fonts.ready)
       .then(() => html2pdf().set(options).from(element).save())
@@ -397,6 +412,7 @@
         alert("PDFの作成に失敗しました。時間をおいてもう一度お試しください。");
       })
       .finally(() => {
+        element.classList.remove("pdf-desktop");
         button.disabled = false;
         button.textContent = previousButtonText;
       });
