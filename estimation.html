@@ -44,7 +44,7 @@
   .brand{
     font-family:"Noto Sans JP",system-ui,sans-serif;letter-spacing:.01em;font-size:1.42rem;font-weight:900;
   }
-  .brand small{font-size:.52em;font-weight:800;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase}
+  .brand small{font-size:.52em;font-weight:800;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;margin-left:.55em}
   .brand span{color:var(--sizzle)}
   main{padding:54px 0 72px}
   .hero{margin-bottom:34px}
@@ -173,7 +173,7 @@
 <header>
   <div class="wrap nav">
     <a class="back" href="index.html">← トップページに戻る</a>
-    <a class="brand" href="index.html"><span>Phoood</span><small>Food Photo × AI</small></a>
+    <a class="brand" href="index.html"><span>Phoood!!</span><small>Food Photo × AI</small></a>
   </div>
 </header>
 
@@ -238,7 +238,7 @@
           <div class="doc-top">
             <h3 class="doc-title">御見積書</h3>
             <div class="doc-brand">
-              <b>Phoood</b>
+              <b>Phoood!!</b>
               <span>Food Photo × AI</span>
             </div>
           </div>
@@ -274,7 +274,7 @@
           </p>
           <div class="doc-footer">
             運営会社：株式会社インターセクト<br>
-            お問い合わせ：sizzle@inter-sect.co.jp
+            お問い合わせ：phoood@inter-sect.co.jp
           </div>
         </div>
       </section>
@@ -435,7 +435,7 @@
     let y = 110;
 
     drawText(ctx, "御見積書", left, y, { font: '900 54px "Noto Sans JP", sans-serif', color: ink });
-    drawText(ctx, "Phoood", right, y + 4, { font: '900 34px "Noto Sans JP", sans-serif', color: ink, align: "right" });
+    drawText(ctx, "Phoood!!", right, y + 4, { font: '900 34px "Noto Sans JP", sans-serif', color: ink, align: "right" });
     drawText(ctx, "Food Photo × AI", right, y + 50, { font: '700 18px "Noto Sans JP", sans-serif', color: soft, align: "right" });
 
     y += 118;
@@ -528,7 +528,7 @@
     ctx.stroke();
     y += 34;
     drawText(ctx, "運営会社：株式会社インターセクト", left, y, { font: '20px "Noto Sans JP", sans-serif', color: faint });
-    drawText(ctx, "お問い合わせ：sizzle@inter-sect.co.jp", left, y + 32, { font: '20px "Noto Sans JP", sans-serif', color: faint });
+    drawText(ctx, "お問い合わせ：phoood@inter-sect.co.jp", left, y + 32, { font: '20px "Noto Sans JP", sans-serif', color: faint });
 
     return canvas;
   }
