@@ -81,9 +81,9 @@
   }
   header.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 24px -20px rgba(36,27,20,.5);}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
-  .logo{display:flex;align-items:baseline;gap:.05em;font-family:"Anton",sans-serif;font-size:1.45rem;letter-spacing:.04em;}
+  .logo{display:flex;align-items:baseline;gap:.45em;font-family:"Noto Sans JP",system-ui,sans-serif;font-size:1.54rem;font-weight:900;letter-spacing:.01em;}
   .logo .dot{color:var(--sizzle);}
-  .logo small{font-family:"Noto Sans JP";font-weight:700;font-size:.62rem;letter-spacing:.2em;color:var(--ink-soft);margin-left:.5em;}
+  .logo small{font-family:"Noto Sans JP",system-ui,sans-serif;font-weight:800;font-size:.58rem;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase;}
   .nav-links{display:flex;align-items:center;gap:1.6rem;}
   .nav-links a.link{font-size:.9rem;font-weight:500;color:var(--ink-soft);transition:color .2s;}
   .nav-links a.link:hover{color:var(--sizzle);}
@@ -183,19 +183,20 @@
   .section-head h2{font-weight:900;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.32;margin:.5em 0 .4em;letter-spacing:.01em;}
   .section-head h2,.prob h3,.str-card h3,.voice .q,.step h3,.plan .pname{text-wrap:balance;}
   .section-head p{color:var(--ink-soft);margin:0;font-size:1.02rem;}
+  .sp-br{display:none;}
   .center{text-align:center;margin-left:auto;margin-right:auto;}
   .center .eyebrow{justify-content:center;}
 
   /* ---------- problems ---------- */
   .prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;}
   .prob{
-    position:relative;background:linear-gradient(135deg,#fff 0%,#FFF7F1 100%);
+    position:relative;background:#fff;
     border:1px solid var(--line);border-radius:16px;padding:26px 28px;
     transition:transform .25s ease, box-shadow .25s ease;
   }
   .prob::after{
     content:"";position:absolute;left:28px;bottom:-9px;width:18px;height:18px;
-    background:#FFF7F1;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:#fff;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
     transform:rotate(45deg);
   }
   .prob:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
@@ -264,7 +265,7 @@
   .voice .who span{font-size:.76rem;color:var(--ink-faint);}
 
   /* ---------- process ---------- */
-  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;}
+  .flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative;}
   .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 16px;position:relative;min-height:190px;text-align:center;}
   .step:not(:last-child)::after{
     content:"";position:absolute;right:-25px;top:36px;width:34px;height:2px;
@@ -367,7 +368,7 @@
   footer{background:var(--ink);color:rgba(250,245,238,.7);padding:56px 0 32px;}
   .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:40px;}
   .foot-brand .logo{color:#fff;}
-  .foot-brand p{font-size:.84rem;max-width:24em;margin:.8em 0 0;}
+  .foot-brand p{font-size:.84rem;max-width:36em;margin:.8em 0 0;}
   .foot-cols{display:flex;gap:56px;flex-wrap:wrap;}
   .foot-col h4{font-size:.72rem;letter-spacing:.14em;color:var(--ink-faint);font-weight:700;margin:0 0 1em;font-family:"Anton";}
   .foot-col a{display:block;font-size:.86rem;padding:.3em 0;transition:color .2s;}
@@ -452,20 +453,28 @@
     .hero-mobile-visual .stamp{right:16px;bottom:14px;padding:.62em .8em;border-radius:10px;}
     .stamp .num{font-size:1.65rem;}
     .stamp small{font-size:.52rem;}
-    .section-head h2{font-size:clamp(1.45rem,6.2vw,1.85rem);line-height:1.38;}
-    .section-head p{font-size:.92rem;line-height:1.85;}
+    .section-head h2{font-size:clamp(1.42rem,5.8vw,1.78rem);line-height:1.42;text-wrap:balance;}
+    .section-head p{font-size:.92rem;line-height:1.85;text-wrap:pretty;}
+    .section-head h2 br.sp-br{display:block;}
+    .section-head p br,.prob p br,.str-card h3 br,.str-card p br,.step p br,.flow-note br{display:none;}
+    .section-head p br.sp-br,.str-card p br.sp-br{display:block;}
+    .step p br.sp-br,.flow-note br.sp-br{display:block;}
     .prob{padding:22px 20px;}
     .prob::after{left:26px;}
-    .prob h3{font-size:1.3rem;line-height:1.4;}
-    .str-card h3{font-size:1.32rem;line-height:1.4;}
-    .prob p{font-size:.84rem;line-height:1.7;}
+    .prob h3{font-size:1.22rem;line-height:1.48;text-wrap:balance;}
+    .str-card h3{font-size:1.24rem;line-height:1.48;text-wrap:balance;}
+    .str-card p{line-height:1.75;text-wrap:pretty;}
+    .prob p{font-size:.84rem;line-height:1.75;text-wrap:pretty;}
     .voice .q{font-size:1.02rem;line-height:1.65;}
-    .step h3{font-size:1.28rem;}
+    .step h3{font-size:1.2rem;line-height:1.45;text-wrap:balance;}
+    .step p,.flow-note,.price-notes,.plan .pdesc{line-height:1.8;text-wrap:pretty;}
     .ba .tag{font-size:.78rem;left:12px;top:12px;max-width:calc(100% - 24px);line-height:1.45;}
     .plan-main{padding:32px 24px;}
     .plan-main ul{grid-template-columns:1fr;}
     .plan-main .pprice .val{font-size:3rem;}
-    .plan .pname{font-size:1.28rem;}
+    .plan .pname{font-size:1.18rem;line-height:1.45;text-wrap:balance;}
+    .logo{gap:.34em;font-size:1.28rem;}
+    .logo small{font-size:.48rem;letter-spacing:.08em;}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;}
@@ -479,7 +488,7 @@
 <!-- ============ HEADER ============ -->
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="logo" aria-label="Phoood">Phoood</a>
+    <a href="#top" class="logo" aria-label="Phoood"><span>Phoood</span><small>Food Photo × AI</small></a>
     <nav class="nav-links" id="navlinks">
       <a class="link" href="#strength">強み</a>
       <a class="link" href="#flow">撮影の流れ</a>
@@ -524,10 +533,10 @@
     <div class="section-head center">
       <span class="eyebrow">Problem</span>
       <h2>理想の食品写真、<br>予算や手間で諦めていませんか？</h2>
-      <p>商品の売上を左右する写真。しかし、理想の1枚を撮影するには<br>コストや手間の面で多くの課題が伴います。</p>
+      <p>商品の売上を左右する写真。<br class="sp-br">しかし、理想の1枚を撮影するには<br>コストや手間の面で<br class="sp-br">多くの課題が伴います。</p>
     </div>
     <div class="prob-grid">
-      <div class="prob reveal"><h3>自社撮影では美味しさが表現できない</h3><p>食品特有の光の調整やシズル感の演出など、<br>専門的な技術がないと美味しさを伝えるのが難しい。</p></div>
+      <div class="prob reveal"><h3>自社撮影では美味しそうに撮れない</h3><p>食品特有の光の調整やシズル感の演出など、<br>専門的な技術がないと美味しさを伝えるのが難しい。</p></div>
       <div class="prob reveal"><h3>外注コストが高額で頼めない</h3><p>従来のプロ撮影はスタジオ代や機材費などが積み重なり、<br>見積もりが高額になりがちで予算が合わない。</p></div>
       <div class="prob reveal"><h3>撮影の準備や手配が大変</h3><p>商品に合わせた食器や小道具の買い出し、<br>理想の世界観に合うスタジオの手配に膨大な手間がかかる。</p></div>
       <div class="prob reveal"><h3>写真のバリエーションが出せない</h3><p>毎回同じようなアングルや背景のカットになってしまい、<br>SNSやWebサイトで新鮮味を出しにくい。</p></div>
@@ -541,7 +550,7 @@
     <div class="section-head center">
       <span class="eyebrow">Why we sell</span>
       <h2>写真を変えるだけで、ここまで変わる。</h2>
-      <p>社内環境での簡易的な撮影と、プロカメラマンによる撮影の比較です。<br>商品自体の美味しさを引き出し、購買意欲を動かします。</p>
+      <p>簡易的な撮影と、プロカメラマンによる撮影の比較です。<br><br class="sp-br">商品自体の美味しさを引き出し、購買意欲を動かします。</p>
     </div>
     <div class="ba">
       <div class="frame">
@@ -563,20 +572,20 @@
     <div class="section-head center">
       <span class="eyebrow">Our Strength</span>
       <h2>選ばれる、3つの理由</h2>
-      <p>プロの撮影技術とAI背景生成を組み合わせ、<br>品質と価格の両立を実現します。</p>
+      <p>プロの撮影技術とAI背景生成を組み合わせ、<br><br class="sp-br">品質と価格の両立を実現します。</p>
     </div>
     <div class="str">
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/mooncake-shot.jpg" alt="プロが撮影した月餅の食品写真"><span class="knum">1</span></div>
-        <div class="body"><h3>プロが撮影する<br>食品写真</h3><p>光・構図・質感を見極め、<br>“おいしそう”な一枚に仕上げます。</p></div>
+        <div class="body"><h3>プロが撮影する<br>食品写真</h3><p>光や構図にこだわり、<br>商品の魅力を引き出します。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/mooncake-ai-composite.jpg" alt="月餅の食品写真にAI背景を合成した画像"><span class="knum">2</span></div>
-        <div class="body"><h3>背景や器はAIで生成し、<br>用途に合わせて最適化</h3><p>商品イメージや掲載媒体に合わせた<br>イメージの作成が可能。</p></div>
+        <div class="body"><h3>AIで背景や器を<br>最適化</h3><p>商品や掲載媒体に合わせた<br>ビジュアル展開が可能です。</p></div>
       </div>
       <div class="str-card reveal">
         <div class="top"><img class="photo-img" src="images/Our%20Strength03.png" alt="高品質かつ低価格を実現する食品写真制作のイメージ"><span class="knum">3</span></div>
-        <div class="body"><h3>高品質かつ<br>低価格を実現</h3><p>従来の予算でも、ウェブや印刷媒体の<br>写真クオリティ向上が可能です。</p></div>
+        <div class="body"><h3>高品質かつ<br>低価格を実現</h3><p>従来の予算でも、ウェブや印刷媒体の<br><br class="sp-br">写真クオリティ向上が可能です。</p></div>
       </div>
     </div>
   </div>
@@ -587,17 +596,18 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Flow</span>
-      <h2>ご依頼から納品まで、ワンストップ</h2>
-      <p>お問い合わせからラフ提案、撮影・納品までスムーズに進行します。</p>
+      <h2>ご依頼から納品まで、<br class="sp-br">ワンストップ</h2>
+      <p>お問い合わせからラフ提案、撮影・納品まで<br class="sp-br">スムーズに進行します。</p>
     </div>
     <div class="flow">
       <div class="step reveal"><span class="sn">01</span><h3>お問い合わせ</h3><p>お問い合わせフォームからお気軽にご連絡ください。</p></div>
       <div class="step reveal"><span class="sn">02</span><h3>打ち合わせ</h3><p>イメージや用途をヒアリングし、演出をご提案します。</p></div>
-      <div class="step reveal"><span class="sn">03</span><h3>ラフご提案</h3><p>生成AIで作成した画像をもとにイメージを提案、方向性を確認します。</p></div>
-      <div class="step reveal"><span class="sn">04</span><h3>撮影</h3><p>ご提供いただいた食品・商品をプロのカメラマンが撮影します。</p></div>
-      <div class="step reveal"><span class="sn">05</span><h3>データ納品</h3><p>撮影した食品画像とAI生成画像を合成加工し、最終データとして納品いたします。</p></div>
+      <div class="step reveal"><span class="sn">03</span><h3>ラフご提案</h3><p>生成AIで作成した画像をもとに<br class="sp-br">イメージを提案、方向性を確認します。</p></div>
+      <div class="step reveal"><span class="sn">04</span><h3>撮影商品のご提供</h3><p>撮影に使用する食品・商品をご準備のうえ、<br class="sp-br">弊社までお送りいただきます。</p></div>
+      <div class="step reveal"><span class="sn">05</span><h3>撮影</h3><p>ご提供いただいた食品・商品をプロのカメラマンが撮影します。</p></div>
+      <div class="step reveal"><span class="sn">06</span><h3>データ納品</h3><p>撮影した食品画像とAI生成画像を合成加工し、<br class="sp-br">最終データとして納品いたします。</p></div>
     </div>
-    <p class="flow-note">お客様の撮影の立ち会いは行なっておりません。撮影の立ち会いがご希望の場合は別途ご相談ください。</p>
+    <p class="flow-note">お客様の撮影の立ち会いは行なっておりません。<br class="sp-br">撮影の立ち会いがご希望の場合は別途ご相談ください。<br><br class="sp-br">返却が必要な商品は、事前にお知らせください。</p>
   </div>
 </section>
 
@@ -607,7 +617,7 @@
     <div class="section-head center">
       <span class="eyebrow">Price</span>
       <h2>料金はシンプルに</h2>
-      <p>プロ撮影・背景AI生成・基本レタッチをまとめた、<br>分かりやすい価格設定です。</p>
+      <p>プロ撮影・背景AI生成・基本レタッチをまとめた、<br class="sp-br">わかりやすい価格設定です。</p>
     </div>
     <div class="price-grid">
       <div class="plan reveal">
@@ -621,7 +631,7 @@
           <li>カフェやキッチンなど無限のシチュエーション指定</li>
           <li>高額なスタジオ代や大掛かりな備品代が不要</li>
           <li>SNSやWEBサイトのメインビジュアルに最適</li>
-          <li>jpeg形式で納品</li>
+          <li>jpg形式で納品</li>
         </ul>
       </div>
       <div class="plan feat reveal">
@@ -635,7 +645,7 @@
           <li>複数の見せ方や使用媒体に合わせて展開</li>
           <li>1カットずつ依頼するよりも費用を抑えやすい設計</li>
           <li>商品ページや広告素材をまとめて整備したい場合に最適</li>
-          <li>jpeg形式で納品</li>
+          <li>jpg形式で納品</li>
         </ul>
       </div>
       <div class="plan reveal">
@@ -645,11 +655,11 @@
         <div class="pcut">／ 1カット（税別）</div>
         <p class="pdesc">商品などの編集用画像をご支給いただき、背景生成と合成編集を行うプランです。</p>
         <ul>
-          <li>商品などの編集用画像はお客様にてご用意</li>
-          <li>合成・編集品質を保つため高画質画像が必要</li>
+          <li>編集用の商品画像はお客様にてご用意</li>
+          <li>一定以上の解像度の画像が必要となります</li>
           <li>背景のシチュエーション生成を含む</li>
           <li>AI背景との合成編集まで対応</li>
-          <li>jpeg形式で納品</li>
+          <li>jpg形式で納品</li>
         </ul>
       </div>
     </div>
@@ -668,7 +678,7 @@
     <div class="section-head center">
       <span class="eyebrow">Cost Comparison</span>
       <h2>料金比較</h2>
-      <p>スタジオ代や備品代、コーディネート代など、<br>一般的な撮影で追加されがちな費用をすべて含んだコミコミ価格です。<br><span>（※プロ撮影 + 背景AI生成プラン 5カットの場合の比較一例）</span></p>
+      <p>スタジオ代や備品代、コーディネート代など、<br><br class="sp-br">一般的な撮影で追加されがちな費用をすべて含んだ価格です。<br><br class="sp-br"><span>（※プロ撮影 + 背景AI生成プラン 5カットの場合の比較一例）</span></p>
     </div>
     <div class="cmp-wrap">
       <table class="cmp">
@@ -694,7 +704,7 @@
     <div class="section-head center">
       <span class="eyebrow">Gallery</span>
       <h2>制作事例</h2>
-      <p>テーマに合わせて、プロが多彩な見せ方をご提案します。<br>あらゆるジャンルに対応。</p>
+      <p>テーマ、ジャンルに合わせて、多彩な見せ方をご提案します。</p>
     </div>
 
     <div class="gal-row">
@@ -736,7 +746,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <span class="logo">Phoood</span>
+        <span class="logo"><span>Phoood</span><small>Food Photo × AI</small></span>
         <p>食品に特化した撮影で、御社の商品を“売れる一枚”に。<br>企画から撮影・納品までワンストップでサポートします。</p>
       </div>
       <div class="foot-cols">
