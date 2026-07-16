@@ -112,14 +112,14 @@
     color:var(--ink);
   }
   .estimate-doc.pdf-mode{
-    width:190mm;max-width:190mm;border-radius:0;box-shadow:none;background:#fff;
+    width:180mm;max-width:180mm;border-radius:0;box-shadow:none;background:#fff;
   }
   .pdf-capture-area{
-    position:absolute;left:0;top:0;z-index:9999;width:190mm;max-width:190mm;
-    background:#fff;pointer-events:none;
+    position:fixed;left:0;top:0;z-index:9999;width:180mm;max-width:180mm;
+    margin:0;background:#fff;pointer-events:none;
   }
   .pdf-capture-area .estimate-doc{
-    width:190mm;max-width:190mm;border-radius:0;box-shadow:none;background:#fff;
+    width:180mm;max-width:180mm;border-radius:0;box-shadow:none;background:#fff;
   }
   .doc-top{
     display:flex;justify-content:space-between;gap:24px;align-items:flex-start;
@@ -402,9 +402,7 @@
         backgroundColor: "#ffffff",
         scrollX: 0,
         scrollY: 0,
-        windowWidth: 1200,
-        x: 0,
-        y: 0
+        windowWidth: 1200
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
       pagebreak: { mode: ["css", "legacy"], avoid: [".doc-note", ".doc-footer", ".total-row"] }
