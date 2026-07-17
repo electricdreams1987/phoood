@@ -346,6 +346,17 @@
     background:#fff;color:var(--ink);font-size:1.55rem;line-height:1;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
   }
+  .lightbox-nav{
+    position:absolute;top:50%;z-index:3;transform:translateY(-50%);width:54px;height:72px;border:0;
+    background:rgba(250,245,238,.9);color:var(--ink);border-radius:10px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:background .2s ease, transform .2s ease;
+  }
+  .lightbox-nav:hover{background:#fff;transform:translateY(-50%) scale(1.04);}
+  .lightbox-nav.prev{left:24px;}
+  .lightbox-nav.next{right:24px;}
+  .lightbox-nav::before{content:"";width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;}
+  .lightbox-nav.prev::before{border-right:18px solid var(--ink);}
+  .lightbox-nav.next::before{border-left:18px solid var(--ink);}
 
   /* ---------- access ---------- */
   .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
@@ -406,6 +417,14 @@
       border-bottom:0;
     }
     .gal-row{grid-template-columns:repeat(3,1fr);}
+    .lightbox{padding:18px 62px;}
+    .lightbox img{max-height:82svh;}
+    .lightbox-nav{width:42px;height:58px;border-radius:8px;}
+    .lightbox-nav.prev{left:10px;}
+    .lightbox-nav.next{right:10px;}
+    .lightbox-nav::before{border-top-width:10px;border-bottom-width:10px;}
+    .lightbox-nav.prev::before{border-right-width:14px;}
+    .lightbox-nav.next::before{border-left-width:14px;}
     .hero-cta .btn,.final-cta .btn{flex:1;justify-content:center;}
     .hero .frame{aspect-ratio:4/3;border-radius:14px;}
 
@@ -510,7 +529,7 @@
       <h1><span class="nowrap"><span class="copy-badge">プロの撮影 × AI背景</span><br class="mobile-break"><span class="hl">“売れる写真”</span>を<br class="mobile-break">高品質・低価格で</span></h1>
       <div class="hero-mobile-visual">
         <div class="frame">
-          <img class="photo-img" src="images/main03_01.webp" width="2000" height="1237" decoding="async" fetchpriority="high" alt="木のテーブルに置かれた彩り豊かな料理写真">
+          <img class="photo-img" src="images/main03_01.webp" width="2500" height="1546" decoding="async" fetchpriority="high" alt="木のテーブルに置かれた彩り豊かな料理写真">
         </div>
       </div>
       <p class="lead">通販・カタログ・パッケージ・EC・広告で「選ばれる」食品写真を、企画から撮影・納品までワンストップで。</p>
@@ -522,7 +541,7 @@
     </div>
     <div class="hero-visual">
       <div class="frame">
-        <img class="photo-img" src="images/main03_01.webp" width="2000" height="1237" decoding="async" fetchpriority="high" alt="木のテーブルに置かれた彩り豊かな料理写真">
+        <img class="photo-img" src="images/main03_01.webp" width="2500" height="1546" decoding="async" fetchpriority="high" alt="木のテーブルに置かれた彩り豊かな料理写真">
       </div>
     </div>
   </div>
@@ -727,7 +746,9 @@
 
 <div class="lightbox" id="galleryLightbox" aria-hidden="true">
   <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+  <button class="lightbox-nav prev" type="button" aria-label="前の画像へ"></button>
   <img src="" alt="">
+  <button class="lightbox-nav next" type="button" aria-label="次の画像へ"></button>
 </div>
 
 <!-- ============ FINAL CTA ============ -->
@@ -808,10 +829,21 @@
   const lightbox = document.getElementById('galleryLightbox');
   const lightboxImg = lightbox.querySelector('img');
   const lightboxClose = lightbox.querySelector('.lightbox-close');
-  document.querySelectorAll('.gtile img').forEach(img => {
+  const lightboxPrev = lightbox.querySelector('.lightbox-nav.prev');
+  const lightboxNext = lightbox.querySelector('.lightbox-nav.next');
+  const galleryImages = Array.from(document.querySelectorAll('.gtile img'));
+  let currentGalleryIndex = 0;
+
+  const showGalleryImage = index => {
+    currentGalleryIndex = (index + galleryImages.length) % galleryImages.length;
+    const img = galleryImages[currentGalleryIndex];
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || '制作事例';
+  };
+
+  galleryImages.forEach((img, index) => {
     img.addEventListener('click', () => {
-      lightboxImg.src = img.currentSrc || img.src;
-      lightboxImg.alt = img.alt || '制作事例';
+      showGalleryImage(index);
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
     });
@@ -822,11 +854,22 @@
     lightboxImg.src = '';
   };
   lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    showGalleryImage(currentGalleryIndex - 1);
+  });
+  lightboxNext.addEventListener('click', e => {
+    e.stopPropagation();
+    showGalleryImage(currentGalleryIndex + 1);
+  });
   lightbox.addEventListener('click', e => {
     if (e.target === lightbox) closeLightbox();
   });
   addEventListener('keydown', e => {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showGalleryImage(currentGalleryIndex - 1);
+    if (e.key === 'ArrowRight') showGalleryImage(currentGalleryIndex + 1);
   });
 </script>
 </body>
