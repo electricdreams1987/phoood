@@ -322,6 +322,25 @@
   table.cmp tr.total td.us{color:var(--sizzle);font-size:1.15rem;}
   .cmp-cap{margin-top:14px;font-size:.78rem;color:var(--ink-faint);}
 
+
+  /* ---------- faq ---------- */
+  .faq-list{max-width:760px;margin:0 auto;}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+  .faq-item summary{
+    list-style:none;cursor:pointer;display:flex;gap:.8em;align-items:baseline;
+    padding:18px 22px;font-weight:700;font-size:1rem;line-height:1.6;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::before{content:"Q";font-family:"Anton";color:var(--sizzle);font-size:1.1rem;flex:none;}
+  .faq-item summary::after{content:"+";margin-left:auto;color:var(--sizzle);font-weight:400;font-size:1.3rem;flex:none;transition:transform .2s ease;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item .a{
+    display:flex;gap:.8em;align-items:baseline;
+    padding:0 22px 20px;font-size:.92rem;color:var(--ink-soft);line-height:1.85;
+  }
+  .faq-item .a::before{content:"A";font-family:"Anton";color:var(--ink-faint);font-size:1.1rem;flex:none;}
+  .faq-item .a p{margin:0;}
+
   /* ---------- gallery ---------- */
   .gal-cat{margin-bottom:40px;}
   .gal-cat h3{font-size:1.05rem;font-weight:900;display:flex;align-items:center;gap:.6em;margin:0 0 16px;}
@@ -416,6 +435,8 @@
       border-left:16px solid transparent;border-right:16px solid transparent;border-top:22px solid var(--sizzle);
       border-bottom:0;
     }
+    .faq-item summary{padding:15px 16px;font-size:.94rem;}
+    .faq-item .a{padding:0 16px 16px;font-size:.88rem;}
     .gal-row{grid-template-columns:repeat(3,1fr);}
     .lightbox{padding:56px 18px 92px;}
     .lightbox img{max-width:100%;max-height:calc(100svh - 170px);}
@@ -514,6 +535,7 @@
       <a class="link" href="#strength">強み</a>
       <a class="link" href="#flow">撮影の流れ</a>
       <a class="link" href="#price">料金</a>
+      <a class="link" href="#faq">FAQ</a>
       <a class="link" href="#gallery">作例</a>
       <a class="btn btn-primary" href="contact.html">お問い合わせ</a>
     </nav>
@@ -719,6 +741,59 @@
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">FAQ</span>
+      <h2>よくあるご質問</h2>
+      <p>食品写真の撮影料金・AI背景・納品について、<br class="sp-br">よくいただくご質問にお答えします。</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>食品写真の撮影は1カットだけでも依頼できますか?</summary>
+        <div class="a"><p>はい、1カット30,000円(税別)からご依頼いただけます。プロカメラマンによる商品撮影、AI背景の生成・合成、基本レタッチまで含んだ価格です。複数カットの場合は5カット120,000円(税別)のセットプランが割安です。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>料金にスタジオ代や食器・備品代は含まれますか?</summary>
+        <div class="a"><p>はい、すべて含まれています。撮影はAI背景合成を前提とするため、高額なスタジオ代・食器や小道具の購入費・コーディネート代が発生しません。お見積り後に追加費用が積み上がることはありません。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>AI背景とはなんですか?料理もAIで生成するのですか?</summary>
+        <div class="a"><p>いいえ、商品(料理)本体はプロカメラマンが実物を撮影します。AIで生成するのは背景や食器まわりのシチュエーションのみで、実写のシズル感はそのままに、カフェ風・和モダンなど媒体に合わせた世界観を合成します。商品の形状や色をAIで作り変えることはありません。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>撮影用の商品はどうやって渡せばいいですか?返却はできますか?</summary>
+        <div class="a"><p>撮影する食品・商品を弊社まで郵送でお送りいただきます。返却が必要な商品・食器は、事前にお知らせいただければご返却します。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>撮影に立ち会うことはできますか?</summary>
+        <div class="a"><p>基本プランでは撮影の立ち会いは行っておりません。その分、事前に生成AIで作成したラフ画像で仕上がりイメージをすり合わせてから撮影するため、認識のズレを防げます。立ち会いをご希望の場合は別途ご相談ください。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>発注から納品までどれくらいかかりますか?</summary>
+        <div class="a"><p>ご発注・撮影商品の到着後、通常7〜10営業日ほどで納品します。内容により前後しますが、ラフ提案で方向性を確認後、撮影・AI背景合成・基本レタッチを進めます。お急ぎの場合は事前にご相談ください。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>納品データの形式と利用範囲を教えてください。</summary>
+        <div class="a"><p>jpg形式で納品します。ECサイト、広告、パッケージ、印刷物などでご利用いただける高解像度データとしてお渡しします。二次利用の範囲や特殊なサイズ指定がある場合は、事前に用途をお知らせください。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>手持ちの商品写真の背景だけを差し替えてもらえますか?</summary>
+        <div class="a"><p>はい、画像支給プランとして1カット15,000円(税別)で承ります。お客様にご用意いただいた商品画像に、AI背景の生成と合成編集を行います。合成品質確保のため、一定以上の解像度の元画像が必要です。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>修正やリテイクは何回までできますか?</summary>
+        <div class="a"><p>背景の方向性や色味などの軽微な修正は1回まで料金内で対応します。商品撮影のやり直しや大幅な構図変更、追加カットが必要な修正は別途お見積りとなります。</p></div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>どんな食品でも撮影できますか?(冷凍食品・汁物・お酒など)</summary>
+        <div class="a"><p>常温・冷蔵・冷凍食品、汁物、飲料、お酒など幅広く対応可能です。商品の状態管理や演出方法が重要な食品は、事前に保管方法や撮影イメージを確認します。特殊な調理や持ち込みが難しい品目は個別にご相談ください。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ============ GALLERY ============ -->
 <section class="section" id="gallery">
   <div class="wrap">
@@ -779,6 +854,7 @@
           <a href="#strength">選ばれる理由</a>
           <a href="#flow">撮影の流れ</a>
           <a href="#price">料金プラン</a>
+          <a href="#faq">よくあるご質問</a>
           <a href="#gallery">制作事例</a>
         </div>
         <div class="foot-col">
@@ -796,6 +872,94 @@
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "食品写真の撮影は1カットだけでも依頼できますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、1カット30,000円(税別)からご依頼いただけます。プロカメラマンによる商品撮影、AI背景の生成・合成、基本レタッチまで含んだ価格です。複数カットの場合は5カット120,000円(税別)のセットプランが割安です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "料金にスタジオ代や食器・備品代は含まれますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、すべて含まれています。撮影はAI背景合成を前提とするため、高額なスタジオ代・食器や小道具の購入費・コーディネート代が発生しません。お見積り後に追加費用が積み上がることはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI背景とはなんですか?料理もAIで生成するのですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ、商品(料理)本体はプロカメラマンが実物を撮影します。AIで生成するのは背景や食器まわりのシチュエーションのみで、実写のシズル感はそのままに、カフェ風・和モダンなど媒体に合わせた世界観を合成します。商品の形状や色をAIで作り変えることはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "撮影用の商品はどうやって渡せばいいですか?返却はできますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "撮影する食品・商品を弊社まで郵送でお送りいただきます。返却が必要な商品・食器は、事前にお知らせいただければご返却します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "撮影に立ち会うことはできますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "基本プランでは撮影の立ち会いは行っておりません。その分、事前に生成AIで作成したラフ画像で仕上がりイメージをすり合わせてから撮影するため、認識のズレを防げます。立ち会いをご希望の場合は別途ご相談ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "発注から納品までどれくらいかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ご発注・撮影商品の到着後、通常7〜10営業日ほどで納品します。内容により前後しますが、ラフ提案で方向性を確認後、撮影・AI背景合成・基本レタッチを進めます。お急ぎの場合は事前にご相談ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "納品データの形式と利用範囲を教えてください。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "jpg形式で納品します。ECサイト、広告、パッケージ、印刷物などでご利用いただける高解像度データとしてお渡しします。二次利用の範囲や特殊なサイズ指定がある場合は、事前に用途をお知らせください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手持ちの商品写真の背景だけを差し替えてもらえますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、画像支給プランとして1カット15,000円(税別)で承ります。お客様にご用意いただいた商品画像に、AI背景の生成と合成編集を行います。合成品質確保のため、一定以上の解像度の元画像が必要です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "修正やリテイクは何回までできますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "背景の方向性や色味などの軽微な修正は1回まで料金内で対応します。商品撮影のやり直しや大幅な構図変更、追加カットが必要な修正は別途お見積りとなります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "どんな食品でも撮影できますか?(冷凍食品・汁物・お酒など)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "常温・冷蔵・冷凍食品、汁物、飲料、お酒など幅広く対応可能です。商品の状態管理や演出方法が重要な食品は、事前に保管方法や撮影イメージを確認します。特殊な調理や持ち込みが難しい品目は個別にご相談ください。"
+      }
+    }
+  ]
+}
+</script>
 <script>
   // year
   document.getElementById('yr').textContent = new Date().getFullYear();
