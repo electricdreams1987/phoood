@@ -241,6 +241,15 @@
   }
   .solve-note{margin-top:28px;color:rgba(250,245,238,.7);font-size:.9rem;text-align:center;}
 
+  /* ---------- movie ---------- */
+  .movie{background:var(--paper-2);}
+  .movie-frame{
+    max-width:920px;margin:0 auto;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:var(--shadow);background:#000;
+    aspect-ratio:16/9;
+  }
+  .movie-frame iframe{width:100%;height:100%;border:0;display:block;}
+
   /* ---------- strengths ---------- */
   .str{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
   .str-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -551,6 +560,7 @@
     <a href="#top" class="logo" aria-label="Phoood"><span>Phoood!!</span><small>Food Photo × AI</small></a>
     <nav class="nav-links" id="navlinks">
       <a class="link" href="#strength">強み</a>
+      <a class="link" href="#movie">動画</a>
       <a class="link" href="#flow">撮影の流れ</a>
       <a class="link" href="#price">料金</a>
       <a class="link" href="#faq">FAQ</a>
@@ -623,6 +633,20 @@
         <span class="tag after">After / プロの撮影 + AI背景</span>
         <img class="photo-img" src="images/after02.webp" width="1400" height="1172" loading="lazy" decoding="async" alt="プロの撮影とAI背景で仕上げた食品写真">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOVIE ============ -->
+<section class="section movie" id="movie">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Movie</span>
+      <h2>食品撮影の仕上がりを動画で見る</h2>
+      <p>プロの撮影とAI背景生成による表現を、<br class="sp-br">動画でもご確認いただけます。</p>
+    </div>
+    <div class="movie-frame reveal">
+      <iframe src="https://www.youtube.com/embed/laNbxRzlDKU" title="Phoood 食品撮影・AI背景生成の紹介動画" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -870,6 +894,7 @@
           <h4>Service</h4>
           <a href="#problem">よくあるお悩み</a>
           <a href="#strength">選ばれる理由</a>
+          <a href="#movie">動画</a>
           <a href="#flow">撮影の流れ</a>
           <a href="#price">料金プラン</a>
           <a href="#faq">よくあるご質問</a>
